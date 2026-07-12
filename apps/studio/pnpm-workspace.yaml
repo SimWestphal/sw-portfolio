@@ -1,0 +1,5 @@
+# pnpm fuehrt Build-Scripts fremder Pakete nicht automatisch aus (Sicherheit).
+# esbuild braucht sein postinstall (laedt native Binary) -> hier freigeben,
+# sonst bricht `sanity dev`/`pnpm run dev` mit ERR_PNPM_IGNORED_BUILDS ab.
+allowBuilds:
+  esbuild: true

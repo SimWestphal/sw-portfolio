@@ -1,0 +1,40 @@
+{
+  "name": "simone-westphal-portfolio",
+  "private": true,
+  "version": "1.0.0",
+  "main": "package.json",
+  "license": "UNLICENSED",
+  "scripts": {
+    "build": "sanity build",
+    "deploy": "sanity deploy",
+    "deploy-graphql": "sanity graphql deploy",
+    "dev": "sanity dev",
+    "start": "sanity start"
+  },
+  "keywords": [
+    "sanity"
+  ],
+  "//pnpm-builds": "pnpm blockiert Build-Scripts (z.B. esbuilds postinstall) standardmaessig aus Sicherheitsgruenden -> `pnpm run dev` bricht mit ERR_PNPM_IGNORED_BUILDS ab. Freigabe steht in pnpm-workspace.yaml (allowBuilds), NICHT hier: ab pnpm 10+ wird ein pnpm-Feld in package.json ignoriert.",
+  "dependencies": {
+    "@sanity/icons": "^5.0.0",
+    "@sanity/vision": "^6.4.0",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "sanity": "^6.4.0",
+    "sanity-plugin-internationalized-array": "^5.1.17",
+    "styled-components": "^6.1.18"
+  },
+  "devDependencies": {
+    "@sanity/eslint-config-studio": "^6.0.0",
+    "@types/react": "^19.2.14",
+    "eslint": "^9.28",
+    "prettier": "^3.5",
+    "typescript": "^5.8"
+  },
+  "prettier": {
+    "bracketSpacing": false,
+    "printWidth": 100,
+    "semi": false,
+    "singleQuote": true
+  }
+}
