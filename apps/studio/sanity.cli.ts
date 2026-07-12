@@ -5,6 +5,13 @@ export default defineCliConfig({
     projectId: 'wfwca0w2',
     dataset: 'production'
   },
+  typegen: {
+    // Schema liegt hier im Studio, die Queries in apps/web:
+    path: '../web/src/**/*.{ts,tsx}', // wo defineQuery-Aufrufe gesucht werden
+    schema: 'schema.json', // Zwischenprodukt von `sanity schema extract`
+    generates: '../web/sanity.types.ts', // Ausgabe ins Web-Paket
+    overloadClientMethods: true, // typisiert client.fetch / sanityFetch automatisch
+  },
   deployment: {
     /**
      * Enable auto-updates for studios.
