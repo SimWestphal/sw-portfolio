@@ -1,10 +1,11 @@
 {
-  "name": "day-one-content-operations",
+  "name": "sw-portfolio",
   "private": true,
   "version": "1.0.0",
-  "description": "Day One Content Operations",
+  "description": "Simone Westphal Portfolio",
   "scripts": {
     "dev": "pnpm run --parallel dev",
+    "storybook": "pnpm --filter web storybook",
     "build": "pnpm run --parallel build"
   },
   "engines": {
