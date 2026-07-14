@@ -12,7 +12,6 @@ export default function RootLayout({
       <body className="bg-gray-100 dark:bg-gray-900 min-h-screen">
         <LanguageSwitcher />
         {children}
-
         <SanityLive />
       </body>
     </html>
