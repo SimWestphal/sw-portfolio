@@ -83,6 +83,8 @@
   --text-small--line-height: 1;
   --text-small--letter-spacing: 0.16em;
   --text-small--font-weight: 400;
+
+  --animate-smooth: all 0.3s ease-in-out;
 }
 
 @utility bg-stripes {

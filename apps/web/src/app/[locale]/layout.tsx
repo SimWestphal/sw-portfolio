@@ -1,8 +1,12 @@
 import { SanityLive } from "@/sanity/live";
-import { LanguageSwitcher } from "../components/LanguageSwitcher";
 import "./../globals.css";
 
 import { IBM_Plex_Sans, JetBrains_Mono } from "next/font/google";
+import { Sidebar } from "../components/Sidebar";
+
+const mainStyles = {
+  wrapper: "flex-1 ",
+};
 
 const sans = IBM_Plex_Sans({
   subsets: ["latin"],
@@ -18,9 +22,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${sans.variable} ${mono.variable}`}>
-      <body className="bg-gray-100 dark:bg-gray-900 min-h-screen">
-        <LanguageSwitcher />
-        {children}
+      <body className="flex min-h-screen antialiased">
+        <Sidebar />
+        <main className={`${mainStyles.wrapper}`}>{children}</main>
+        {/* <LanguageSwitcher /> */}
+
         <SanityLive />
       </body>
     </html>

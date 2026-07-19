@@ -1,6 +1,6 @@
 import { sanityFetch } from "@/sanity/live";
-import { defineQuery } from "next-sanity";
 import { PortableText } from "@portabletext/react";
+import { defineQuery } from "next-sanity";
 import { notFound } from "next/navigation";
 
 // Eine Query für beide Rechtstexte – nur die ID unterscheidet sich.
