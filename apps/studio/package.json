@@ -15,7 +15,7 @@
   "keywords": [
     "sanity"
   ],
-  "//pnpm-builds": "pnpm blockiert Build-Scripts (z.B. esbuilds postinstall) standardmaessig aus Sicherheitsgruenden -> `pnpm run dev` bricht mit ERR_PNPM_IGNORED_BUILDS ab. Freigabe steht in pnpm-workspace.yaml (allowBuilds), NICHT hier: ab pnpm 10+ wird ein pnpm-Feld in package.json ignoriert.",
+  "//pnpm-builds": "pnpm blockiert Build-Scripts (z.B. esbuilds postinstall) standardmaessig aus Sicherheitsgruenden -> `pnpm add`/`pnpm run dev` meldet ERR_PNPM_IGNORED_BUILDS. Freigabe steht in pnpm-workspace.yaml unter `onlyBuiltDependencies` (LISTE von Paketnamen, KEINE Map mit `: true`), NICHT hier: ab pnpm 10+ wird ein pnpm-Feld in package.json ignoriert. Am einfachsten `pnpm approve-builds` ausfuehren, das schreibt den richtigen Schluessel selbst.",
   "dependencies": {
     "@sanity/icons": "^5.0.0",
     "@sanity/vision": "^6.4.0",
