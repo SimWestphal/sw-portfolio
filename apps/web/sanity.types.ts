@@ -15,6 +15,23 @@
 export declare const internalGroqTypeReferenceTo: unique symbol;
 
 // Source: schema.json
+export type Navigation = {
+  _id: string;
+  _type: "navigation";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: InternationalizedArrayString;
+  icon?: string;
+  anchor?: InternationalizedArrayString;
+};
+
+export type InternationalizedArrayString = Array<
+  {
+    _key: string;
+  } & InternationalizedArrayStringValue
+>;
+
 export type LegalPage = {
   _id: string;
   _type: "legalPage";
@@ -68,12 +85,6 @@ export type Skillcategory = {
   _rev: string;
   name?: InternationalizedArrayString;
 };
-
-export type InternationalizedArrayString = Array<
-  {
-    _key: string;
-  } & InternationalizedArrayStringValue
->;
 
 export type SkillReference = {
   _ref: string;
@@ -325,11 +336,12 @@ export type Slug = {
 };
 
 export type AllSanitySchemaTypes =
+  | Navigation
+  | InternationalizedArrayString
   | LegalPage
   | SkillcategoryReference
   | Skill
   | Skillcategory
-  | InternationalizedArrayString
   | SkillReference
   | ProjectcategoryReference
   | CompanyReference
@@ -355,6 +367,15 @@ export type AllSanitySchemaTypes =
   | Geopoint
   | Slug;
 
+// Source: ../web/src/app/[locale]/layout.tsx
+// Variable: NAVIGATION_QUERY
+// Query: *[_type == "navigation"][] {   "name": coalesce(      name[language == $locale][0].value,      name[language == "de"][0].value    ),    "icon": icon,    "anchor": coalesce(      anchor[language == $locale][0].value,      anchor[language == "de"][0].value    )  }
+export type NAVIGATION_QUERY_RESULT = Array<{
+  name: string | null;
+  icon: string | null;
+  anchor: string | null;
+}>;
+
 // Source: ../web/src/app/[locale]/page.tsx
 // Variable: SKILLS_QUERY
 // Query: *[_type == "skill"]|order(_createdAt asc){  _id,  "name": coalesce(    name[language == $locale][0].value,    name[language == "de"][0].value  )}
@@ -363,10 +384,48 @@ export type SKILLS_QUERY_RESULT = Array<{
   name: string | null;
 }>;
 
+// Source: ../web/src/app/components/LegalPageView.tsx
+// Variable: LEGAL_PAGE_QUERY
+// Query: coalesce(*[_id == $id][0], *[_id == $fallbackId][0]){ title, body }
+export type LEGAL_PAGE_QUERY_RESULT =
+  | {
+      title: null;
+      body: null;
+    }
+  | {
+      title: string | null;
+      body: null;
+    }
+  | {
+      title: string | null;
+      body: Array<{
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: "span";
+          _key: string;
+        }>;
+        style?:
+          "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+        listItem?: "bullet" | "number";
+        markDefs?: Array<{
+          href?: string;
+          _type: "link";
+          _key: string;
+        }>;
+        level?: number;
+        _type: "block";
+        _key: string;
+      }> | null;
+    }
+  | null;
+
 // Query TypeMap
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
+    '*[_type == "navigation"][] {\n   "name": coalesce(\n      name[language == $locale][0].value,\n      name[language == "de"][0].value\n    ),\n    "icon": icon,\n    "anchor": coalesce(\n      anchor[language == $locale][0].value,\n      anchor[language == "de"][0].value\n    )\n  }': NAVIGATION_QUERY_RESULT;
     '*[_type == "skill"]|order(_createdAt asc){\n  _id,\n  "name": coalesce(\n    name[language == $locale][0].value,\n    name[language == "de"][0].value\n  )\n}': SKILLS_QUERY_RESULT;
+    "\n  coalesce(*[_id == $id][0], *[_id == $fallbackId][0]){ title, body }\n": LEGAL_PAGE_QUERY_RESULT;
   }
 }
