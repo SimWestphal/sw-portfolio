@@ -3,8 +3,8 @@
 import Link from "next/link";
 import { tv } from "tailwind-variants";
 import type { NAVIGATION_QUERY_RESULT } from "../../../sanity.types";
-import { useScrollSpy } from "./hooks/useScrollSpy";
-import { iconMap } from "./icons";
+import { useScrollSpy } from "../hooks/useScrollSpy";
+import { iconMap } from "../icons";
 
 type NavItem = NAVIGATION_QUERY_RESULT[number];
 type HandleScroll = (

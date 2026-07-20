@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import { tv } from "tailwind-variants";
-import type { NAVIGATION_QUERY_RESULT } from "../../../sanity.types";
-import { SidebarNavigation } from "./SidebarNavigation";
+import { NAVIGATION_QUERY_RESULT } from "../../../../sanity.types";
+import { SidebarNavigation } from "../SidebarNavigation";
 
 const sidebarStyles = tv({
   slots: {
