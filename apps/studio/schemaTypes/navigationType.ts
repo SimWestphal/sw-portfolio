@@ -5,9 +5,67 @@ export const navigation = defineType({
   name: 'navigation',
   title: 'navigation',
   fields: [
-    defineField({type: 'internationalizedArrayString', name: 'name', title: 'name'}),
-    defineField({type: 'string', name: 'icon', title: 'icon'}),
-    defineField({type: 'internationalizedArrayString', name: 'anchor', title: 'anchor'}),
+    defineField({
+      type: 'string',
+      name: 'name',
+      title: 'name',
+    }),
+    defineField({
+      name: 'navigationItem',
+      title: 'navigationItem',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          name: 'navigationItem',
+
+          fields: [
+            defineField({type: 'string', name: 'name', title: 'name'}),
+            defineField({type: 'string', name: 'icon', title: 'icon'}),
+            defineField({
+              name: 'linkType',
+              title: 'linkType',
+              type: 'string',
+              options: {
+                list: [
+                  {title: 'internal', value: 'internal'},
+                  {title: 'anchor', value: 'anchor'},
+                ],
+                layout: 'radio',
+              },
+              initialValue: 'internal',
+            }),
+
+            defineField({
+              name: 'internalLink',
+              title: 'internalLink',
+              type: 'reference',
+              to: [{type: 'legalPage'}], // Ersetze 'page' mit dem Namen deines Seiten-Schemas
+              hidden: ({parent}) => parent?.linktype !== 'internal',
+
+              options: {
+                filter: ({document}) => {
+                  // Das Plugin speichert die Sprache automatisch im Feld 'language'
+                  const currentLang = document?.language || 'de'
+
+                  return {
+                    // Filtert alle Seiten, deren ID auf das Sprachkürzel endet
+                    filter: '_id match $pattern',
+                    params: {pattern: `*-${currentLang}`},
+                  }
+                },
+              },
+            }),
+            defineField({
+              name: 'anchorLink',
+              title: 'anchorLink',
+              type: 'string',
+              hidden: ({parent}) => parent?.linktype !== 'anchor',
+            }),
+          ],
+        },
+      ],
+    }),
   ],
   preview: {
     select: {title: 'name'},

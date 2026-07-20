@@ -8,7 +8,7 @@ export const project = defineType({
     defineField({type: 'internationalizedArrayString', name: 'name', title: 'name'}),
     defineField({
       type: 'internationalizedArrayString',
-      name: 'shortdescription',
+      name: 'shortDescription',
       title: 'shortDescription',
     }),
     defineField({
@@ -24,12 +24,12 @@ export const project = defineType({
       of: [defineArrayMember({type: 'reference', to: [{type: 'skill'}]})],
     }),
     defineField({type: 'date', name: 'projectStart', title: 'projectStart'}),
-    defineField({type: 'date', name: 'projectend', title: 'projectEnd'}),
+    defineField({type: 'date', name: 'projectEnd', title: 'projectEnd'}),
     defineField({
       type: 'reference',
-      name: 'projectcategory',
+      name: 'projectCategory',
       title: 'projectCategory',
-      to: [{type: 'projectcategory'}],
+      to: [{type: 'projectCategory'}],
     }),
     defineField({
       type: 'reference',

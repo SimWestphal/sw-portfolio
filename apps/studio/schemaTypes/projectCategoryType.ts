@@ -1,8 +1,8 @@
 import {defineField, defineType} from 'sanity'
 
-export const projecttype = defineType({
+export const projectCategory = defineType({
   type: 'document',
-  name: 'projectcategory',
+  name: 'projectCategory',
   title: 'projectCategory',
   fields: [defineField({type: 'internationalizedArrayString', name: 'name', title: 'name'})],
   preview: {

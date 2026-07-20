@@ -1,8 +1,8 @@
 import {defineField, defineType} from 'sanity'
 
-export const skillcategory = defineType({
+export const skillCategory = defineType({
   type: 'document',
-  name: 'skillcategory',
+  name: 'skillCategory',
   title: 'skillCategory',
   fields: [defineField({type: 'internationalizedArrayString', name: 'name', title: 'name'})],
   preview: {

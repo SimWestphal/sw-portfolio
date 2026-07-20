@@ -10,7 +10,7 @@ export const skill = defineType({
       type: 'reference',
       name: 'category',
       title: 'category',
-      to: [{type: 'skillcategory'}],
+      to: [{type: 'skillCategory'}],
     }),
   ],
   preview: {
