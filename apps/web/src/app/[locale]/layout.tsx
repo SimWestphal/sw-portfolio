@@ -4,7 +4,7 @@ import "./../globals.css";
 import { LOCALES } from "@/i18n/config";
 import { IBM_Plex_Sans, JetBrains_Mono } from "next/font/google";
 import { LanguageSwitcher } from "../components/LanguageSwitcher";
-import { SidebarData } from "../components/Sidebar/SidebarData";
+import { SidebarData } from "./SidebarData";
 
 const mainStyles = {
   wrapper: "flex-1 ",

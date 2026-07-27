@@ -1,9 +1,9 @@
-import { LegalPageView } from "@/app/components/LegalPageView";
+import { LegalPage } from "@/app/[locale]/[slug]/LegalPage";
 import { sanityFetch } from "@/sanity/live";
 import { LEGAL_PAGE_QUERY } from "@/sanity/queries";
 import { notFound } from "next/navigation";
 
-export async function SlugContent({
+export async function PageData({
   locale,
   slug,
 }: {
@@ -21,7 +21,7 @@ export async function SlugContent({
 
   switch (page._type) {
     case "legalPage":
-      return <LegalPageView page={page} />;
+      return <LegalPage page={page} />;
     default:
       notFound();
   }

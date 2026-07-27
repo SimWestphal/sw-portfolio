@@ -1,7 +1,7 @@
 import { tv } from "@/app/lib/tv";
 import Link from "next/link";
 import React, { forwardRef } from "react";
-import { iconMap, IconName } from "../icons";
+import { iconMap, IconName } from "../../../icons";
 
 // export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 //   href?: string;

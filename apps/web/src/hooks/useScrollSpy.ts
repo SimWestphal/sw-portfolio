@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import type { NAVIGATION_QUERY_RESULT } from "../../../../sanity.types";
-
-export function useScrollSpy(navigation: NAVIGATION_QUERY_RESULT) {
+import { NAVIGATION_QUERY_RESULT } from "../../sanity.types";
+type NavigationDoc = NAVIGATION_QUERY_RESULT[number];
+export function useScrollSpy(navigation: NavigationDoc) {
   const [activePathId, setActivePathId] = useState("/");
 
   // Verhindert, dass der Scroll-Observer dazwischenfunkt, während das Klick-Scrollen läuft

@@ -1,14 +1,13 @@
 "use client";
 
+import type { NAVIGATION_QUERY_RESULT } from "@/../sanity.types";
+import { useScrollSpy } from "@/hooks/useScrollSpy";
+import { iconMap } from "@/icons";
 import Link from "next/link";
 import { tv } from "tailwind-variants";
 
-import type { NAVIGATION_QUERY_RESULT } from "../../../../sanity.types";
-import { useScrollSpy } from "../hooks/useScrollSpy";
-import { iconMap } from "../icons";
-
-type Navigation = NonNullable<NAVIGATION_QUERY_RESULT>;
-type NavItem = NonNullable<Navigation["navigationItem"]>[number];
+type NavigationDoc = NAVIGATION_QUERY_RESULT[number];
+type NavItem = NonNullable<NavigationDoc["navigationItem"]>[number];
 
 type HandleScroll = (
   e: React.MouseEvent<HTMLAnchorElement>,
@@ -81,7 +80,7 @@ export function SidebarNavigation({
   navigation,
   isExpanded,
 }: {
-  navigation: Navigation;
+  navigation: NavigationDoc;
   isExpanded: boolean;
 }) {
   const { activePathId, handleScroll } = useScrollSpy(navigation);
