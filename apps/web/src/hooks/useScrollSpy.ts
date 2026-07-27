@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { NAVIGATION_QUERY_RESULT } from "../../sanity.types";
 type NavigationDoc = NAVIGATION_QUERY_RESULT[number];
+
 export function useScrollSpy(navigation: NavigationDoc) {
   const [activePathId, setActivePathId] = useState("/");
 

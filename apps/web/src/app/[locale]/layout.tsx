@@ -3,7 +3,6 @@ import "./../globals.css";
 
 import { LOCALES } from "@/i18n/config";
 import { IBM_Plex_Sans, JetBrains_Mono } from "next/font/google";
-import { LanguageSwitcher } from "../components/LanguageSwitcher";
 import { SidebarData } from "./SidebarData";
 
 const mainStyles = {
@@ -34,8 +33,6 @@ export default async function LocaleLayout({
       <body className="flex min-h-screen antialiased">
         <SidebarData locale={locale} />
         <main className={`${mainStyles.wrapper}`}>{children}</main>
-        <LanguageSwitcher />
-
         <SanityLive />
       </body>
     </html>

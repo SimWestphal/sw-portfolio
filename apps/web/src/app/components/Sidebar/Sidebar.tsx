@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { tv } from "tailwind-variants";
 
+import { LanguageSwitcher } from "../LanguageSwitcher";
 import { SidebarNavigation } from "../SidebarNavigation";
 
 const sidebarStyles = tv({
@@ -32,13 +33,13 @@ export function Sidebar({
     isExpanded,
   });
 
-  return navigation.navigationItem.length > 0 ? (
+  return (
     <aside className={aside()}>
       <h1>SW</h1>
-      <SidebarNavigation navigation={navigation} isExpanded={isExpanded} />
-      <p>f</p>
+      {navigation?.navigationItem?.length > 0 ? (
+        <SidebarNavigation navigation={navigation} isExpanded={isExpanded} />
+      ) : null}
+      <LanguageSwitcher />
     </aside>
-  ) : (
-    <> </>
   );
 }

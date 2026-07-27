@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 
 const languageSwitcherStyles = tv({
   slots: {
-    wrapper: "grid grid-cols-3 gap-3",
+    wrapper: "flex flex-none gap-3",
     link: "border-1 border-content-subtle cursor-pointer text-langswitch  font-mono p-2",
   },
   variants: {
