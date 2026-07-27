@@ -26,6 +26,8 @@
   --pattern-content-to: rgb(242, 241, 238);
   --pattern-sidebar-from: rgba(20, 20, 15, 0.05);
   --pattern-sidebar-to: rgb(236, 235, 231);
+
+  --animate-smooth: all 0.3s ease-in-out;
 }
 
 .dark {
@@ -37,7 +39,6 @@
   --font-mono: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace);
 
   --color-background: var(--background);
-  --color-sidebar: var(--sidebar);
   --color-card: var(--card);
   --color-tag: var(--tag);
 
@@ -51,6 +52,7 @@
 
   --color-accent: var(--accent);
   --color-accent-hover: var(--accent-hover);
+  --color-accent-foreground: var(--accent-foreground);
   --color-accent-tint: var(--accent-tint);
   --color-accent-hairline: var(--accent-hairline);
 
@@ -93,9 +95,9 @@
   --text-langswitch: 0.6875rem;
   --text-langswitch--line-height: 1;
   --text-langswitch--letter-spacing: 0.06em;
-  --text-langswitch--font-weight: 200;
+  --text-langswitch--font-weight: 300;
 
-  --animate-smooth: all 0.3s ease-in-out;
+  --transition-property-smooth: var(--animate-smooth);
 }
 
 @utility bg-stripes {

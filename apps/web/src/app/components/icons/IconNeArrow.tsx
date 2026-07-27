@@ -1,18 +1,19 @@
 import { IconProps } from ".";
 
-export const IconContact = ({ size = 24, ...props }: IconProps) => (
+export const IconNeArrow = ({ size = 24, ...props }: IconProps) => (
   <svg
     width={size}
     height={size}
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
-    strokeWidth="1.2"
+    strokeWidth="1.1"
     strokeLinecap="round"
     strokeLinejoin="round"
     {...props}
+    data-testid="icon-nearrow"
   >
-    <rect x="3" y="5" width="18" height="14" rx="2"></rect>
-    <polyline points="3 7 12 13 21 7"></polyline>
+    <line x1="7" y1="17" x2="17" y2="7"></line>
+    <polyline points="7 7 17 7 17 17"></polyline>
   </svg>
 );

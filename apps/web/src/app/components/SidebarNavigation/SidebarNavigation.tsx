@@ -2,11 +2,14 @@
 
 import Link from "next/link";
 import { tv } from "tailwind-variants";
-import type { NAVIGATION_QUERY_RESULT } from "../../../sanity.types";
+
+import type { NAVIGATION_QUERY_RESULT } from "../../../../sanity.types";
 import { useScrollSpy } from "../hooks/useScrollSpy";
 import { iconMap } from "../icons";
 
-type NavItem = NAVIGATION_QUERY_RESULT[number];
+type Navigation = NonNullable<NAVIGATION_QUERY_RESULT>;
+type NavItem = NonNullable<Navigation["navigationItem"]>[number];
+
 type HandleScroll = (
   e: React.MouseEvent<HTMLAnchorElement>,
   id: string,
@@ -45,17 +48,21 @@ function NavigationItem({
   isActive: boolean;
   handleScroll: HandleScroll;
 }) {
+  if (!item) return null;
+
   const { link, linkDash, linkText, linkIconButton, linkIcon } = sidebarStyles({
     isActive,
   });
+
   const IconComponent =
     item.icon && item.icon in iconMap
       ? iconMap[item.icon as keyof typeof iconMap]
       : null;
   return (
     <Link
-      href={`#${item.anchor}`}
-      onClick={(e) => handleScroll(e, item.anchor ?? "")}
+      key={item.anchorLink}
+      href={`#${item.anchorLink}`}
+      onClick={(e) => handleScroll(e, item.anchorLink ?? "")}
       className={link()}
       aria-label={item.name ?? undefined}
     >
@@ -74,19 +81,19 @@ export function SidebarNavigation({
   navigation,
   isExpanded,
 }: {
-  navigation: NAVIGATION_QUERY_RESULT;
+  navigation: Navigation;
   isExpanded: boolean;
 }) {
   const { activePathId, handleScroll } = useScrollSpy(navigation);
   return (
     <nav>
-      {navigation.map((item) => {
-        const isActive = item.anchor == activePathId;
+      {navigation?.navigationItem?.map((item) => {
+        const isActive = item.anchorLink == activePathId;
         return (
           <NavigationItem
             item={item}
             isActive={isActive}
-            key={item.anchor}
+            key={item.anchorLink}
             handleScroll={handleScroll}
           />
         );

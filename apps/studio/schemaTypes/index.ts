@@ -1,3 +1,5 @@
+import {blogPostIndex} from './blogPostIndexType'
+import {blogPost} from './blogPostType'
 import {company} from './companyType'
 import {legalPage} from './legalPageType'
 import {locale} from './localeType'
@@ -19,4 +21,6 @@ export const schemaTypes = [
   legalPage,
   navigation,
   siteSettings,
+  blogPost,
+  blogPostIndex,
 ]

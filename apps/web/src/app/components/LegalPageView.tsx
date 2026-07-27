@@ -1,35 +1,19 @@
-import { sanityFetch } from "@/sanity/live";
-import { PortableText } from "@portabletext/react";
-import { defineQuery } from "next-sanity";
-import { notFound } from "next/navigation";
+import { PortableText } from "next-sanity";
+import { LEGAL_PAGE_QUERY_RESULT } from "../../../sanity.types";
 
-// Eine Query für beide Rechtstexte – nur die ID unterscheidet sich.
-// Fallback auf die DE-Version, falls die Übersetzung (noch) fehlt.
-const LEGAL_PAGE_QUERY = defineQuery(`
-  coalesce(*[_id == $id][0], *[_id == $fallbackId][0]){ title, body }
-`);
+type LegalPage = Extract<
+  NonNullable<LEGAL_PAGE_QUERY_RESULT>,
+  { _type: "legalPage" }
+>;
 
-export async function LegalPageView({
-  idBase,
-  locale,
-}: {
-  idBase: "impressum" | "datenschutz";
-  locale: string;
-}) {
-  const { data } = await sanityFetch({
-    query: LEGAL_PAGE_QUERY,
-    params: { id: `${idBase}-${locale}`, fallbackId: `${idBase}-de` },
-  });
-
-  if (!data) notFound();
-
+export function LegalPageView({ page }: { page: LegalPage }) {
   return (
     <main className="mx-auto max-w-2xl p-8">
       <h1 className="mb-6 text-3xl font-bold text-gray-900 dark:text-white">
-        {data.title}
+        {page.title}
       </h1>
       <div className="space-y-4 text-gray-700 dark:text-gray-300">
-        {data.body && <PortableText value={data.body} />}
+        {page.body && <PortableText value={page.body} />}
       </div>
     </main>
   );

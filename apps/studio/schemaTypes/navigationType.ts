@@ -5,6 +5,7 @@ export const navigation = defineType({
   name: 'navigation',
   title: 'navigation',
   fields: [
+    defineField({name: 'language', type: 'string', readOnly: true, hidden: true}),
     defineField({
       type: 'string',
       name: 'name',
@@ -41,17 +42,13 @@ export const navigation = defineType({
               title: 'internalLink',
               type: 'reference',
               to: [{type: 'legalPage'}], // Ersetze 'page' mit dem Namen deines Seiten-Schemas
-              hidden: ({parent}) => parent?.linktype !== 'internal',
-
+              hidden: ({parent}) => parent?.linkType !== 'internal',
               options: {
                 filter: ({document}) => {
-                  // Das Plugin speichert die Sprache automatisch im Feld 'language'
-                  const currentLang = document?.language || 'de'
-
+                  if (!document?.language) return {filter: ''}
                   return {
-                    // Filtert alle Seiten, deren ID auf das Sprachkürzel endet
-                    filter: '_id match $pattern',
-                    params: {pattern: `*-${currentLang}`},
+                    filter: 'language == $lang',
+                    params: {lang: document.language},
                   }
                 },
               },
@@ -60,7 +57,7 @@ export const navigation = defineType({
               name: 'anchorLink',
               title: 'anchorLink',
               type: 'string',
-              hidden: ({parent}) => parent?.linktype !== 'anchor',
+              hidden: ({parent}) => parent?.linkType !== 'anchor',
             }),
           ],
         },

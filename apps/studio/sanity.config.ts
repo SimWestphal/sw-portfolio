@@ -24,7 +24,7 @@ export default defineConfig({
     documentInternationalization({
       supportedLanguages: (client) =>
         client.fetch(`*[_type == "locale"] | order(default desc){ "id": tag, "title": name }`),
-      schemaTypes: ['navigation', 'siteSettings'],
+      schemaTypes: ['navigation', 'siteSettings', 'blogPost'],
     }),
   ],
 

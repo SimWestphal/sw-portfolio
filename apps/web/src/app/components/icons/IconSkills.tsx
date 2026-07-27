@@ -1,4 +1,6 @@
-export const IconSkills = ({ size = 24, ...props }) => (
+import { IconProps } from ".";
+
+export const IconSkills = ({ size = 24, ...props }: IconProps) => (
   <svg
     width={size}
     height={size}

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { tv } from "tailwind-variants";
-import { NAVIGATION_QUERY_RESULT } from "../../../../sanity.types";
+
 import { SidebarNavigation } from "../SidebarNavigation";
 
 const sidebarStyles = tv({
@@ -23,19 +23,22 @@ export function Sidebar({
   navigation,
 }: {
   locale: string;
-  navigation: NAVIGATION_QUERY_RESULT;
+  navigation: any;
 }) {
-  const [isExpanded, setIsExpanded] = useState(true); // TODO expandButton
+  const [isExpanded, setIsExpanded] = useState(true);
+  // TODO expandButton
 
   const { aside } = sidebarStyles({
     isExpanded,
   });
 
-  return (
+  return navigation.navigationItem.length > 0 ? (
     <aside className={aside()}>
       <h1>SW</h1>
       <SidebarNavigation navigation={navigation} isExpanded={isExpanded} />
       <p>f</p>
     </aside>
+  ) : (
+    <> </>
   );
 }

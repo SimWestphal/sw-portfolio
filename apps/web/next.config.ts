@@ -1,7 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
-};
+  // cacheComponents: true,
+  // cacheLife: { default: sanity },
+} satisfies NextConfig;
 
 export default nextConfig;

@@ -15,15 +15,58 @@
 export declare const internalGroqTypeReferenceTo: unique symbol;
 
 // Source: schema.json
-export type Navigation = {
+export type BlogPostIndex = {
   _id: string;
-  _type: "navigation";
+  _type: "blogPostIndex";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  intro?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+  language?: string;
+};
+
+export type SkillCategoryReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "skillCategory";
+};
+
+export type Skill = {
+  _id: string;
+  _type: "skill";
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
   name?: InternationalizedArrayString;
-  icon?: string;
-  anchor?: InternationalizedArrayString;
+  category?: SkillCategoryReference;
+};
+
+export type SkillCategory = {
+  _id: string;
+  _type: "skillCategory";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: InternationalizedArrayString;
 };
 
 export type InternationalizedArrayString = Array<
@@ -31,6 +74,233 @@ export type InternationalizedArrayString = Array<
     _key: string;
   } & InternationalizedArrayStringValue
 >;
+
+export type SkillReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "skill";
+};
+
+export type ProjectCategoryReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "projectCategory";
+};
+
+export type CompanyReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "company";
+};
+
+export type RoleReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "role";
+};
+
+export type Project = {
+  _id: string;
+  _type: "project";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: InternationalizedArrayString;
+  shortDescription?: InternationalizedArrayString;
+  description?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+  skills?: Array<
+    {
+      _key: string;
+    } & SkillReference
+  >;
+  projectStart?: string;
+  projectEnd?: string;
+  projectCategory?: ProjectCategoryReference;
+  company?: CompanyReference;
+  role?: RoleReference;
+};
+
+export type Role = {
+  _id: string;
+  _type: "role";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: InternationalizedArrayString;
+};
+
+export type Company = {
+  _id: string;
+  _type: "company";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: InternationalizedArrayString;
+};
+
+export type ProjectCategory = {
+  _id: string;
+  _type: "projectCategory";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: InternationalizedArrayString;
+};
+
+export type LocaleReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "locale";
+};
+
+export type Locale = {
+  _id: string;
+  _type: "locale";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
+  tag?: string;
+  fallback?: LocaleReference;
+  default?: boolean;
+};
+
+export type TranslationMetadata = {
+  _id: string;
+  _type: "translation.metadata";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  translations?: InternationalizedArrayReference;
+  schemaTypes?: Array<string>;
+};
+
+export type InternationalizedArrayReference = Array<
+  {
+    _key: string;
+  } & InternationalizedArrayReferenceValue
+>;
+
+export type NavigationReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "navigation";
+};
+
+export type SiteSettingsReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "siteSettings";
+};
+
+export type BlogPostReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "blogPost";
+};
+
+export type InternationalizedArrayReferenceValue = {
+  _type: "internationalizedArrayReferenceValue";
+  value?: NavigationReference | SiteSettingsReference | BlogPostReference;
+  language?: string;
+};
+
+export type BlogPost = {
+  _id: string;
+  _type: "blogPost";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+  language?: string;
+  publishedAt?: string;
+  body?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+};
+
+export type Slug = {
+  _type: "slug";
+  current?: string;
+  source?: string;
+};
+
+export type SiteSettings = {
+  _id: string;
+  _type: "siteSettings";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  description?: string;
+};
+
+export type LegalPageReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "legalPage";
+};
+
+export type Navigation = {
+  _id: string;
+  _type: "navigation";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  language?: string;
+  name?: string;
+  navigationItem?: Array<{
+    name?: string;
+    icon?: string;
+    linkType?: "internal" | "anchor";
+    internalLink?: LegalPageReference;
+    anchorLink?: string;
+    _type: "navigationItem";
+    _key: string;
+  }>;
+};
 
 export type LegalPage = {
   _id: string;
@@ -58,144 +328,7 @@ export type LegalPage = {
     _type: "block";
     _key: string;
   }>;
-};
-
-export type SkillcategoryReference = {
-  _ref: string;
-  _type: "reference";
-  _weak?: boolean;
-  [internalGroqTypeReferenceTo]?: "skillcategory";
-};
-
-export type Skill = {
-  _id: string;
-  _type: "skill";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  name?: InternationalizedArrayString;
-  category?: SkillcategoryReference;
-};
-
-export type Skillcategory = {
-  _id: string;
-  _type: "skillcategory";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  name?: InternationalizedArrayString;
-};
-
-export type SkillReference = {
-  _ref: string;
-  _type: "reference";
-  _weak?: boolean;
-  [internalGroqTypeReferenceTo]?: "skill";
-};
-
-export type ProjectcategoryReference = {
-  _ref: string;
-  _type: "reference";
-  _weak?: boolean;
-  [internalGroqTypeReferenceTo]?: "projectcategory";
-};
-
-export type CompanyReference = {
-  _ref: string;
-  _type: "reference";
-  _weak?: boolean;
-  [internalGroqTypeReferenceTo]?: "company";
-};
-
-export type RoleReference = {
-  _ref: string;
-  _type: "reference";
-  _weak?: boolean;
-  [internalGroqTypeReferenceTo]?: "role";
-};
-
-export type Project = {
-  _id: string;
-  _type: "project";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  name?: InternationalizedArrayString;
-  shortdescription?: InternationalizedArrayString;
-  description?: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
-    listItem?: "bullet" | "number";
-    markDefs?: Array<{
-      href?: string;
-      _type: "link";
-      _key: string;
-    }>;
-    level?: number;
-    _type: "block";
-    _key: string;
-  }>;
-  skills?: Array<
-    {
-      _key: string;
-    } & SkillReference
-  >;
-  projectStart?: string;
-  projectend?: string;
-  projectcategory?: ProjectcategoryReference;
-  company?: CompanyReference;
-  role?: RoleReference;
-};
-
-export type Role = {
-  _id: string;
-  _type: "role";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  name?: InternationalizedArrayString;
-};
-
-export type Company = {
-  _id: string;
-  _type: "company";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  name?: InternationalizedArrayString;
-};
-
-export type Projectcategory = {
-  _id: string;
-  _type: "projectcategory";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  name?: InternationalizedArrayString;
-};
-
-export type LocaleReference = {
-  _ref: string;
-  _type: "reference";
-  _weak?: boolean;
-  [internalGroqTypeReferenceTo]?: "locale";
-};
-
-export type Locale = {
-  _id: string;
-  _type: "locale";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  name?: string;
-  tag?: string;
-  fallback?: LocaleReference;
-  default?: boolean;
+  slug?: Slug;
 };
 
 export type InternationalizedArrayTextValue = {
@@ -329,29 +462,34 @@ export type Geopoint = {
   alt?: number;
 };
 
-export type Slug = {
-  _type: "slug";
-  current?: string;
-  source?: string;
-};
-
 export type AllSanitySchemaTypes =
-  | Navigation
-  | InternationalizedArrayString
-  | LegalPage
-  | SkillcategoryReference
+  | BlogPostIndex
+  | SkillCategoryReference
   | Skill
-  | Skillcategory
+  | SkillCategory
+  | InternationalizedArrayString
   | SkillReference
-  | ProjectcategoryReference
+  | ProjectCategoryReference
   | CompanyReference
   | RoleReference
   | Project
   | Role
   | Company
-  | Projectcategory
+  | ProjectCategory
   | LocaleReference
   | Locale
+  | TranslationMetadata
+  | InternationalizedArrayReference
+  | NavigationReference
+  | SiteSettingsReference
+  | BlogPostReference
+  | InternationalizedArrayReferenceValue
+  | BlogPost
+  | Slug
+  | SiteSettings
+  | LegalPageReference
+  | Navigation
+  | LegalPage
   | InternationalizedArrayTextValue
   | InternationalizedArrayStringValue
   | InternationalizedArrayText
@@ -364,68 +502,81 @@ export type AllSanitySchemaTypes =
   | SanityFileAsset
   | SanityAssetSourceData
   | SanityImageAsset
-  | Geopoint
-  | Slug;
+  | Geopoint;
 
-// Source: ../web/src/app/[locale]/layout.tsx
-// Variable: NAVIGATION_QUERY
-// Query: *[_type == "navigation"][] {   "name": coalesce(      name[language == $locale][0].value,      name[language == "de"][0].value    ),    "icon": icon,    "anchor": coalesce(      anchor[language == $locale][0].value,      anchor[language == "de"][0].value    )  }
-export type NAVIGATION_QUERY_RESULT = Array<{
-  name: string | null;
-  icon: string | null;
-  anchor: string | null;
+// Source: ../web/src/sanity/queries.ts
+// Variable: LEGAL_PAGE_QUERY
+// Query: *[_type in ["legalPage"]    && slug.current == $slug    && language == $language][0]{    _id,    _type,    title,    body,    language,    "slug": slug.current,    "translations": *[      _type == "translation.metadata" && references(^._id)    ].translations[].value->{      language,      "slug": slug.current    }[defined(slug)]  }
+export type LEGAL_PAGE_QUERY_RESULT = {
+  _id: string;
+  _type: "legalPage";
+  title: string | null;
+  body: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }> | null;
+  language: string | null;
+  slug: string | null;
+  translations: Array<null>;
+} | null;
+
+// Source: ../web/src/sanity/queries.ts
+// Variable: LEGAL_PAGE_PARAMS_QUERY
+// Query: *[_type in ["legalPage"] && defined(slug.current)]{    "slug": slug.current,    language  }
+export type LEGAL_PAGE_PARAMS_QUERY_RESULT = Array<{
+  slug: string | null;
+  language: string | null;
 }>;
 
-// Source: ../web/src/app/[locale]/page.tsx
-// Variable: SKILLS_QUERY
-// Query: *[_type == "skill"]|order(_createdAt asc){  _id,  "name": coalesce(    name[language == $locale][0].value,    name[language == "de"][0].value  )}
-export type SKILLS_QUERY_RESULT = Array<{
+// Source: ../web/src/sanity/queries.ts
+// Variable: NAVIGATION_QUERY
+// Query: *[_type == "navigation" && language == $language][0]{    _id,    name,    language,    navigationItem[]{      name,      icon,      linkType,      anchorLink,      internalLink->{ _id, title, "slug": slug.current }    },    "translations": *[      _type == "translation.metadata" && references(^._id)    ].translations[].value->{      language    }  }
+export type NAVIGATION_QUERY_RESULT = {
   _id: string;
   name: string | null;
-}>;
-
-// Source: ../web/src/app/components/LegalPageView.tsx
-// Variable: LEGAL_PAGE_QUERY
-// Query: coalesce(*[_id == $id][0], *[_id == $fallbackId][0]){ title, body }
-export type LEGAL_PAGE_QUERY_RESULT =
-  | {
-      title: null;
-      body: null;
-    }
-  | {
+  language: string | null;
+  navigationItem: Array<{
+    name: string | null;
+    icon: string | null;
+    linkType: "anchor" | "internal" | null;
+    anchorLink: string | null;
+    internalLink: {
+      _id: string;
       title: string | null;
-      body: null;
-    }
-  | {
-      title: string | null;
-      body: Array<{
-        children?: Array<{
-          marks?: Array<string>;
-          text?: string;
-          _type: "span";
-          _key: string;
-        }>;
-        style?:
-          "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-        listItem?: "bullet" | "number";
-        markDefs?: Array<{
-          href?: string;
-          _type: "link";
-          _key: string;
-        }>;
-        level?: number;
-        _type: "block";
-        _key: string;
-      }> | null;
-    }
-  | null;
+      slug: string | null;
+    } | null;
+  }> | null;
+  translations: Array<
+    | {
+        language: null;
+      }
+    | {
+        language: string | null;
+      }
+    | null
+  >;
+} | null;
 
 // Query TypeMap
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    '*[_type == "navigation"][] {\n   "name": coalesce(\n      name[language == $locale][0].value,\n      name[language == "de"][0].value\n    ),\n    "icon": icon,\n    "anchor": coalesce(\n      anchor[language == $locale][0].value,\n      anchor[language == "de"][0].value\n    )\n  }': NAVIGATION_QUERY_RESULT;
-    '*[_type == "skill"]|order(_createdAt asc){\n  _id,\n  "name": coalesce(\n    name[language == $locale][0].value,\n    name[language == "de"][0].value\n  )\n}': SKILLS_QUERY_RESULT;
-    "\n  coalesce(*[_id == $id][0], *[_id == $fallbackId][0]){ title, body }\n": LEGAL_PAGE_QUERY_RESULT;
+    '\n  *[_type in ["legalPage"]\n    && slug.current == $slug\n    && language == $language][0]{\n    _id,\n    _type,\n    title,\n    body,\n    language,\n    "slug": slug.current,\n    "translations": *[\n      _type == "translation.metadata" && references(^._id)\n    ].translations[].value->{\n      language,\n      "slug": slug.current\n    }[defined(slug)]\n  }\n': LEGAL_PAGE_QUERY_RESULT;
+    '\n  *[_type in ["legalPage"] && defined(slug.current)]{\n    "slug": slug.current,\n    language\n  }\n': LEGAL_PAGE_PARAMS_QUERY_RESULT;
+    '\n  *[_type == "navigation" && language == $language][0]{\n    _id,\n    name,\n    language,\n    navigationItem[]{\n      name,\n      icon,\n      linkType,\n      anchorLink,\n      internalLink->{ _id, title, "slug": slug.current }\n    },\n    "translations": *[\n      _type == "translation.metadata" && references(^._id)\n    ].translations[].value->{\n      language\n    }\n  }\n': NAVIGATION_QUERY_RESULT;
   }
 }

@@ -29,7 +29,7 @@ export const German: Story = {
     await expect(links).toHaveLength(3);
 
     // en Link zeigt auf englische URL
-    const enLink = canvas.getByRole("link", { name: "-EN-" });
+    const enLink = canvas.getByRole("link", { name: "EN" });
     await expect(enLink).toHaveAttribute("href", "/en/projekte/projekt-xy");
   },
 };
@@ -44,7 +44,7 @@ export const English: Story = {
     await expect(links).toHaveLength(3);
 
     // de Link zeigt auf deutsche URL
-    const enLink = canvas.getByRole("link", { name: "-DE-" });
+    const enLink = canvas.getByRole("link", { name: "DE" });
     await expect(enLink).toHaveAttribute("href", "/de/projekte/projekt-xy");
 
     await userEvent.click(enLink);
@@ -62,7 +62,7 @@ export const Spanish: Story = {
     await expect(links).toHaveLength(3);
 
     // en Link zeigt auf spanische URL
-    const enLink = canvas.getByRole("link", { name: "-ES-" });
+    const enLink = canvas.getByRole("link", { name: "ES" });
     await expect(enLink).toHaveAttribute("href", "/es/projekte/projekt-xy");
   },
 };

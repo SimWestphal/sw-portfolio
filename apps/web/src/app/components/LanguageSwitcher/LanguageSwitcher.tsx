@@ -22,10 +22,13 @@ const languageSwitcherStyles = tv({
   },
 });
 
+function switchLanguage(lng: string) {
+  // TODO : check if language is available
+}
 export function LanguageSwitcher() {
   const pathname = usePathname(); // z.B. /de/projekte/projekt-xy
   const parts = pathname.split("/"); // ['', 'de', 'projekte', 'projekt-xy']
-  // TODO : check if language is available
+
   let isActive = false;
   const { wrapper, link } = languageSwitcherStyles({});
   return (

@@ -34,8 +34,8 @@ export function useScrollSpy(navigation: NAVIGATION_QUERY_RESULT) {
     );
 
     // Alle Sektionen im HTML registrieren
-    navigation.forEach((item) => {
-      const el = document.getElementById(item.anchor ?? "");
+    navigation?.navigationItem?.forEach((item) => {
+      const el = document.getElementById(item.anchorLink ?? "");
       if (el) observer.observe(el);
     });
 

@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { DEFAULT_LOCALE, LOCALES } from "./i18n/config";
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // Hat der Pfad schon ein Locale-Prefix?
@@ -18,5 +18,5 @@ export function middleware(request: NextRequest) {
 
 export const config = {
   // statische Assets & API ausnehmen:
-  matcher: ["/((?!api|_next|.*\\..*).*)"],
+  matcher: ["/((?!api|_next|studio|.*\\..*).*)"],
 };
