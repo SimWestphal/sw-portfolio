@@ -28,15 +28,19 @@ function switchLanguage(lng: string) {
 export function LanguageSwitcher() {
   const pathname = usePathname(); // z.B. /de/projekte/projekt-xy
   const parts = pathname.split("/"); // ['', 'de', 'projekte', 'projekt-xy']
+  const current = parts[1];
 
-  let isActive = false;
   const { wrapper, link } = languageSwitcherStyles({});
   return (
     <nav className={wrapper()} aria-label="Sprache wechseln">
       {LOCALES.map((locale) => {
         const href = ["", locale, ...parts.slice(2)].join("/");
         return (
-          <Link className={link()} key={locale} href={href}>
+          <Link
+            className={link({ isActive: locale == current })}
+            key={locale}
+            href={href}
+          >
             {locale.toUpperCase()}
           </Link>
         );
