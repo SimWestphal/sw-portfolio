@@ -37,3 +37,6 @@ async function run() {
 }
 
 run()
+
+//cd apps/studio
+// npx sanity exec scripts/linkTranslations.ts --with-user-token
