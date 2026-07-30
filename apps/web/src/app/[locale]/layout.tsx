@@ -21,9 +21,11 @@ export function generateStaticParams() {
 }
 export default async function LocaleLayout({
   children,
+  switcher,
   params,
 }: {
   children: React.ReactNode;
+  switcher: React.ReactNode;
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
@@ -31,7 +33,7 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} className={`${sans.variable} ${mono.variable}`}>
       <body className="flex min-h-screen antialiased">
-        <SidebarData locale={locale} />
+        <SidebarData locale={locale} switcher={switcher} />
         <main className={`${mainStyles.wrapper}`}>{children}</main>
         <SanityLive />
       </body>

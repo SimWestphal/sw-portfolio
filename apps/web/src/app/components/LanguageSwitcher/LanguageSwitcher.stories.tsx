@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { getRouter } from "@storybook/nextjs-vite/navigation.mock";
-import { expect, within } from "storybook/test";
+import { expect, userEvent, waitFor, within } from "storybook/test";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 
 const meta = {
@@ -24,13 +24,11 @@ export const German: Story = {
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    // 3 Sprachlinks
     const links = canvas.getAllByRole("link");
     await expect(links).toHaveLength(3);
 
-    // en Link zeigt auf englische URL
-    const enLink = canvas.getByRole("link", { name: "EN" });
-    await expect(enLink).toHaveAttribute("href", "/en/projekte/projekt-xy");
+    const deLink = canvas.getByRole("link", { name: "DE" });
+    await expect(deLink).toHaveAttribute("href", "/de/projekte/projekt-xy");
   },
 };
 
@@ -39,30 +37,36 @@ export const English: Story = {
     nextjs: { navigation: { pathname: "/en/projekte/projekt-xy" } },
   },
   play: async ({ canvas, userEvent }) => {
-    // 3 Sprachlinks
     const links = canvas.getAllByRole("link");
     await expect(links).toHaveLength(3);
 
-    // de Link zeigt auf deutsche URL
-    const enLink = canvas.getByRole("link", { name: "DE" });
-    await expect(enLink).toHaveAttribute("href", "/de/projekte/projekt-xy");
-
-    await userEvent.click(enLink);
-    await expect(getRouter().push).toHaveBeenCalled;
+    const enLink = canvas.getByRole("link", { name: "EN" });
+    await expect(enLink).toHaveAttribute("href", "/en/projekte/projekt-xy");
   },
 };
 
 export const Spanish: Story = {
   parameters: {
-    nextjs: { navigation: { pathname: "/es/projekte/projekt-xy" } },
+    nextjs: { navigation: { pathname: "/en/projekte/projekt-xy" } },
   },
-  play: async ({ canvas }) => {
+  play: async ({ canvasElement }) => {
     // 3 Sprachlinks
+    const canvas = within(canvasElement);
     const links = canvas.getAllByRole("link");
     await expect(links).toHaveLength(3);
 
     // en Link zeigt auf spanische URL
-    const enLink = canvas.getByRole("link", { name: "ES" });
-    await expect(enLink).toHaveAttribute("href", "/es/projekte/projekt-xy");
+    const esLink = canvas.getByRole("link", { name: "ES" });
+    const deLink = canvas.getByRole("link", { name: "DE" });
+    const enLink = canvas.getByRole("link", { name: "EN" });
+    await expect(enLink).toHaveAttribute("href", "/en/projekte/projekt-xy");
+    await expect(enLink).toHaveClass("bg-accent-tint");
+    getRouter().push.mockClear();
+    await userEvent.click(esLink);
+    await waitFor(() =>
+      expect(getRouter().push).toHaveBeenCalledWith(
+        expect.stringContaining("/es/"),
+      ),
+    );
   },
 };

@@ -3,8 +3,9 @@
 import { useState } from "react";
 import { tv } from "tailwind-variants";
 
-import { LanguageSwitcher } from "../LanguageSwitcher";
+import { NAVIGATION_QUERY_RESULT } from "../../../../sanity.types";
 import { SidebarNavigation } from "../SidebarNavigation";
+type NavigationDoc = NAVIGATION_QUERY_RESULT[number];
 
 const sidebarStyles = tv({
   slots: {
@@ -21,10 +22,12 @@ const sidebarStyles = tv({
 
 export function Sidebar({
   locale,
+  switcher,
   navigation,
 }: {
   locale: string;
-  navigation: any;
+  switcher: React.ReactNode;
+  navigation: NavigationDoc;
 }) {
   const [isExpanded, setIsExpanded] = useState(true);
   // TODO expandButton
@@ -36,10 +39,8 @@ export function Sidebar({
   return (
     <aside className={aside()}>
       <h1>SW</h1>
-      {navigation?.navigationItem?.length > 0 ? (
-        <SidebarNavigation navigation={navigation} isExpanded={isExpanded} />
-      ) : null}
-      <LanguageSwitcher />
+      <SidebarNavigation navigation={navigation} isExpanded={isExpanded} />
+      {switcher}
     </aside>
   );
 }

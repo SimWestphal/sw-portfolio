@@ -571,6 +571,29 @@ export type NAVIGATION_QUERY_RESULT = Array<{
   >;
 }>;
 
+// Source: ../web/src/sanity/queries.ts
+// Variable: TRANSLATIONS_QUERY
+// Query: *[_type in ["legalPage"] && slug.current == $slug && language == $language][0]{    language,    "slug": slug.current,    "translations": *[      _type == "translation.metadata" && references(^._id)    ].translations[].value->{ language, "slug": slug.current }  }
+export type TRANSLATIONS_QUERY_RESULT = {
+  language: string | null;
+  slug: string | null;
+  translations: Array<
+    | {
+        language: null;
+        slug: null;
+      }
+    | {
+        language: string | null;
+        slug: null;
+      }
+    | {
+        language: string | null;
+        slug: string | null;
+      }
+    | null
+  >;
+} | null;
+
 // Query TypeMap
 import "@sanity/client";
 declare module "@sanity/client" {
@@ -578,5 +601,6 @@ declare module "@sanity/client" {
     '\n  *[_type in ["legalPage"]\n    && slug.current == $slug\n    && language == $language][0]{\n    _id,\n    _type,\n    title,\n    body,\n    language,\n    "slug": slug.current,\n    "translations": *[\n      _type == "translation.metadata" && references(^._id)\n    ].translations[].value->{\n      language,\n      "slug": slug.current\n    }[defined(slug)]\n  }\n': LEGAL_PAGE_QUERY_RESULT;
     '\n  *[_type in ["legalPage"] && defined(slug.current)]{\n    "slug": slug.current,\n    language\n  }\n': LEGAL_PAGE_PARAMS_QUERY_RESULT;
     '\n  *[_type == "navigation" && language == $language]{\n    _id,\n    name,\n    language,\n    navigationItem[]{\n      name,\n      icon,\n      linkType,\n      anchorLink,\n      internalLink->{ _id, title, "slug": slug.current }\n    },\n    "translations": *[\n      _type == "translation.metadata" && references(^._id)\n    ].translations[].value->{\n      language\n    }\n  }\n': NAVIGATION_QUERY_RESULT;
+    '\n  *[_type in ["legalPage"] && slug.current == $slug && language == $language][0]{\n    language,\n    "slug": slug.current,\n    "translations": *[\n      _type == "translation.metadata" && references(^._id)\n    ].translations[].value->{ language, "slug": slug.current }\n  }\n': TRANSLATIONS_QUERY_RESULT;
   }
 }

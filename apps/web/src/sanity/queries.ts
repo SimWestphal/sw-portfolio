@@ -62,3 +62,13 @@ export const NAVIGATION_QUERY = defineQuery(`
     }
   }
 `);
+// apps/web/src/sanity/queries.ts
+export const TRANSLATIONS_QUERY = defineQuery(`
+  *[_type in ["legalPage"] && slug.current == $slug && language == $language][0]{
+    language,
+    "slug": slug.current,
+    "translations": *[
+      _type == "translation.metadata" && references(^._id)
+    ].translations[].value->{ language, "slug": slug.current }
+  }
+`);

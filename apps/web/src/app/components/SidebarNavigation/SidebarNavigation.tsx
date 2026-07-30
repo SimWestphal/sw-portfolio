@@ -83,6 +83,7 @@ export function SidebarNavigation({
   navigation: NavigationDoc;
   isExpanded: boolean;
 }) {
+  if (!navigation?.navigationItem) return null;
   const { activePathId, handleScroll } = useScrollSpy(navigation);
   return (
     <nav>
