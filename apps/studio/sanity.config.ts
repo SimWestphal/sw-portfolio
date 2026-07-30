@@ -3,8 +3,10 @@ import {visionTool} from '@sanity/vision'
 import {defineConfig, type Template} from 'sanity'
 import {internationalizedArray} from 'sanity-plugin-internationalized-array'
 import {structureTool} from 'sanity/structure'
+import {skillUsageBadge} from './components/skillUsageBadge'
 import {schemaTypes} from './schemaTypes'
 import {structure} from './structure'
+import {defaultDocumentNode} from './structure/defaultDocumentNode'
 
 export default defineConfig({
   name: 'default',
@@ -12,9 +14,11 @@ export default defineConfig({
 
   projectId: 'wfwca0w2',
   dataset: 'production',
-
+  document: {
+    badges: (prev, context) => (context.schemaType === 'skill' ? [...prev, skillUsageBadge] : prev),
+  },
   plugins: [
-    structureTool({structure}),
+    structureTool({structure, defaultDocumentNode}),
     visionTool(),
     internationalizedArray({
       languages: (client) =>
