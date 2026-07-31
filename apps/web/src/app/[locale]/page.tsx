@@ -1,3 +1,5 @@
+import Projects from "../components/Projects/Projects";
+
 export default async function IndexPage({
   params,
 }: {
@@ -15,9 +17,7 @@ export default async function IndexPage({
           <h1>about</h1>
         </section>
 
-        <section id="projects" className="scroll-mt-[200px] min-h-[60vh]">
-          <h1>projects</h1>
-        </section>
+        <Projects locale={locale} />
 
         <section id="skills" className="scroll-mt-[200px] min-h-[60vh]">
           <h1>Skills</h1>

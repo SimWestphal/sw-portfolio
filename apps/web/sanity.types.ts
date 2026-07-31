@@ -111,24 +111,7 @@ export type Project = {
   _rev: string;
   name?: InternationalizedArrayString;
   shortDescription?: InternationalizedArrayString;
-  description?: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
-    listItem?: "bullet" | "number";
-    markDefs?: Array<{
-      href?: string;
-      _type: "link";
-      _key: string;
-    }>;
-    level?: number;
-    _type: "block";
-    _key: string;
-  }>;
+  description?: InternationalizedArrayPortableText;
   skills?: Array<
     {
       _key: string;
@@ -167,6 +150,12 @@ export type ProjectCategory = {
   _rev: string;
   name?: InternationalizedArrayString;
 };
+
+export type InternationalizedArrayPortableText = Array<
+  {
+    _key: string;
+  } & InternationalizedArrayPortableTextValue
+>;
 
 export type LocaleReference = {
   _ref: string;
@@ -331,6 +320,29 @@ export type LegalPage = {
   slug?: Slug;
 };
 
+export type InternationalizedArrayPortableTextValue = {
+  _type: "internationalizedArrayPortableTextValue";
+  value?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+  language?: string;
+};
+
 export type InternationalizedArrayTextValue = {
   _type: "internationalizedArrayTextValue";
   value?: string;
@@ -476,6 +488,7 @@ export type AllSanitySchemaTypes =
   | Role
   | Company
   | ProjectCategory
+  | InternationalizedArrayPortableText
   | LocaleReference
   | Locale
   | TranslationMetadata
@@ -490,6 +503,7 @@ export type AllSanitySchemaTypes =
   | LegalPageReference
   | Navigation
   | LegalPage
+  | InternationalizedArrayPortableTextValue
   | InternationalizedArrayTextValue
   | InternationalizedArrayStringValue
   | InternationalizedArrayText
@@ -594,6 +608,42 @@ export type TRANSLATIONS_QUERY_RESULT = {
   >;
 } | null;
 
+// Source: ../web/src/sanity/queries.ts
+// Variable: PROJECTS_QUERY
+// Query: *[_type in ["project"] ] {    _id,    "name":name[language == $language][0].value,    "shortDescription":shortDescription[language == $language][0].value,    "skills":skills[]-> {        _id,        "name":name[language == $language][0].value,    },    category,    "description":description[language == $language][0].value,    "company":name[language == $language][0].value,    "role":name[language == $language][0].value,    projectStart,    projectEnd  }
+export type PROJECTS_QUERY_RESULT = Array<{
+  _id: string;
+  name: string | null;
+  shortDescription: string | null;
+  skills: Array<{
+    _id: string;
+    name: string | null;
+  }> | null;
+  category: null;
+  description: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }> | null;
+  company: string | null;
+  role: string | null;
+  projectStart: string | null;
+  projectEnd: string | null;
+}>;
+
 // Query TypeMap
 import "@sanity/client";
 declare module "@sanity/client" {
@@ -602,5 +652,6 @@ declare module "@sanity/client" {
     '\n  *[_type in ["legalPage"] && defined(slug.current)]{\n    "slug": slug.current,\n    language\n  }\n': LEGAL_PAGE_PARAMS_QUERY_RESULT;
     '\n  *[_type == "navigation" && language == $language]{\n    _id,\n    name,\n    language,\n    navigationItem[]{\n      name,\n      icon,\n      linkType,\n      anchorLink,\n      internalLink->{ _id, title, "slug": slug.current }\n    },\n    "translations": *[\n      _type == "translation.metadata" && references(^._id)\n    ].translations[].value->{\n      language\n    }\n  }\n': NAVIGATION_QUERY_RESULT;
     '\n  *[_type in ["legalPage"] && slug.current == $slug && language == $language][0]{\n    language,\n    "slug": slug.current,\n    "translations": *[\n      _type == "translation.metadata" && references(^._id)\n    ].translations[].value->{ language, "slug": slug.current }\n  }\n': TRANSLATIONS_QUERY_RESULT;
+    '\n  *[_type in ["project"] ] {\n    _id,\n    "name":name[language == $language][0].value,\n    "shortDescription":shortDescription[language == $language][0].value,\n    "skills":skills[]-> {\n        _id,\n        "name":name[language == $language][0].value,\n    },\n    category,\n    "description":description[language == $language][0].value,\n    "company":name[language == $language][0].value,\n    "role":name[language == $language][0].value,\n    projectStart,\n    projectEnd\n  }\n': PROJECTS_QUERY_RESULT;
   }
 }
