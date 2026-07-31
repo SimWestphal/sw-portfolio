@@ -1,9 +1,10 @@
 import {documentInternationalization} from '@sanity/document-internationalization'
 import {visionTool} from '@sanity/vision'
-import {defineConfig, type Template} from 'sanity'
+import {defineArrayMember, defineConfig, defineField, type Template} from 'sanity'
 import {internationalizedArray} from 'sanity-plugin-internationalized-array'
 import {structureTool} from 'sanity/structure'
-import {skillUsageBadge} from './components/skillUsageBadge'
+
+import {skillUsageBadge} from './components/SkillUsageBadge'
 import {schemaTypes} from './schemaTypes'
 import {structure} from './structure'
 import {defaultDocumentNode} from './structure/defaultDocumentNode'
@@ -23,7 +24,15 @@ export default defineConfig({
     internationalizedArray({
       languages: (client) =>
         client.fetch(`*[_type == "locale"]|order(default desc){ "id": tag, "title": name }`),
-      fieldTypes: ['string', 'text'],
+      fieldTypes: [
+        'string',
+        'text',
+        defineField({
+          name: 'portableText',
+          type: 'array',
+          of: [defineArrayMember({type: 'block'})],
+        }),
+      ],
     }),
     documentInternationalization({
       supportedLanguages: (client) =>

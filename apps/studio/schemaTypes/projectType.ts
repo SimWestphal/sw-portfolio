@@ -12,10 +12,9 @@ export const project = defineType({
       title: 'shortDescription',
     }),
     defineField({
-      type: 'array',
+      type: 'internationalizedArrayPortableText',
       name: 'description',
       title: 'description',
-      of: [defineArrayMember({type: 'block'})],
     }),
     defineField({
       type: 'array',
