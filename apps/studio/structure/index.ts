@@ -45,6 +45,7 @@ function localizedNavigation(S: StructureBuilder) {
               .title(`Navigation (${locale.toUpperCase()})`)
               .child(
                 S.documentList()
+                  .apiVersion('2025-02-19')
                   .title(`Navigation (${locale.toUpperCase()})`)
                   .schemaType('navigation')
                   .filter('_type == "navigation" && language == $locale')

@@ -17,6 +17,8 @@ export default defineCliConfig({
      * Enable auto-updates for studios.
      * Learn more at https://www.sanity.io/docs/studio/latest-version-of-sanity#k47faf43faf56
      */
-    autoUpdates: true,
+    // TEMPORÄR zum Debuggen des Pane-Navigation-Bugs: aus = Laufzeit nutzt lokales 6.6.0,
+    // damit Core und Plugins auf derselben Version laufen (kein Versions-Skew).
+    autoUpdates: false,
   },
 })

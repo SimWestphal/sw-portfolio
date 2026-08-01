@@ -22,8 +22,22 @@ export const project = defineType({
       title: 'skills',
       of: [defineArrayMember({type: 'reference', to: [{type: 'skill'}]})],
     }),
-    defineField({type: 'date', name: 'projectStart', title: 'projectStart'}),
-    defineField({type: 'date', name: 'projectEnd', title: 'projectEnd'}),
+    defineField({
+      type: 'date',
+      name: 'projectStart',
+      title: 'projectStart',
+      options: {
+        dateFormat: 'MM/YYYY',
+      },
+    }),
+    defineField({
+      type: 'date',
+      name: 'projectEnd',
+      title: 'projectEnd',
+      options: {
+        dateFormat: 'MM/YYYY',
+      },
+    }),
     defineField({
       type: 'reference',
       name: 'projectCategory',
