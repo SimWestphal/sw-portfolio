@@ -81,11 +81,11 @@ export const PROJECTS_QUERY = defineQuery(`
         _id,
         "name":name[language == $language][0].value,
     },
-    category,
+    "projectCategory":projectCategory->name[language == $language][0].value,
     "description":description[language == $language][0].value,
-    "company":name[language == $language][0].value,
-    "role":name[language == $language][0].value,
-    projectStart,
-    projectEnd
+    "company":company->name[language == $language][0].value,
+    "role":role->name[language == $language][0].value,
+    "projectStart": string::split(projectStart, "-")[1] + "/" + string::split(projectStart, "-")[0],
+    "projectEnd": string::split(projectEnd, "-")[1] + "/" + string::split(projectEnd, "-")[0]
   }
 `);

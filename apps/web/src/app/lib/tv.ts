@@ -6,7 +6,18 @@ export const tv = createTV({
       classGroups: {
         // sagt tailwind-merge: DAS sind font-sizes, keine Farben
         "font-size": [
-          { text: ["h1", "h2", "h3", "h4", "p", "small", "langswitch"] },
+          {
+            text: [
+              "h1",
+              "h2",
+              "h3",
+              "h4",
+              "p",
+              "small",
+              "medium",
+              "langswitch",
+            ],
+          },
         ],
       },
     },

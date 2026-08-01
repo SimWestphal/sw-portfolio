@@ -1,10 +1,10 @@
 "use client";
 
 import type { NAVIGATION_QUERY_RESULT } from "@/../sanity.types";
+import { tv } from "@/app/lib/tv";
 import { useScrollSpy } from "@/hooks/useScrollSpy";
 import { iconMap } from "@/icons";
 import Link from "next/link";
-import { tv } from "tailwind-variants";
 
 type NavigationDoc = NAVIGATION_QUERY_RESULT[number];
 type NavItem = NonNullable<NavigationDoc["navigationItem"]>[number];

@@ -11,7 +11,7 @@ const mainStyles = {
 
 const sans = IBM_Plex_Sans({
   subsets: ["latin"],
-  weight: ["400", "700"],
+  weight: ["400", "500", "700"],
   variable: "--font-sans",
 });
 const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono" });

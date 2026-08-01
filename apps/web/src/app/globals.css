@@ -26,8 +26,6 @@
   --pattern-content-to: rgb(242, 241, 238);
   --pattern-sidebar-from: rgba(20, 20, 15, 0.05);
   --pattern-sidebar-to: rgb(236, 235, 231);
-
-  --animate-smooth: all 0.3s ease-in-out;
 }
 
 .dark {
@@ -62,30 +60,35 @@
 @theme {
   --font-heading: "IBM Plex Sans", sans-serif;
 
-  --text-h1: 2.75rem;
+  --text-h1: 2.61rem;
   --text-h1--line-height: 1.05;
   --text-h1--letter-spacing: -0.025em;
   --text-h1--font-weight: 600;
 
-  --text-h2: 2.125rem;
+  --text-h2: 1.93rem;
   --text-h2--line-height: 1.1;
   --text-h2--letter-spacing: -0.02em;
   --text-h2--font-weight: 600;
 
-  --text-h3: 1.375rem;
+  --text-h3: 1.51rem;
   --text-h3--line-height: 1;
   --text-h3--letter-spacing: -0.01em;
   --text-h3--font-weight: 500;
 
-  --text-h4: 1.0625rem;
+  --text-h4: 1.375rem;
   --text-h4--line-height: 1;
   --text-h4--letter-spacing: 0;
   --text-h4--font-weight: 400;
 
-  --text-p: 1rem;
-  --text-p--line-height: 1;
+  --text-p: 1.1rem;
+  --text-p--line-height: 1.6rem;
   --text-p--letter-spacing: 0;
   --text-p--font-weight: 400;
+
+  --text-medium: 0.75rem;
+  --text-medium--line-height: 1;
+  --text-medium--letter-spacing: 0.16em;
+  --text-medium--font-weight: 400;
 
   --text-small: 0.6875rem;
   --text-small--line-height: 1;
@@ -93,11 +96,9 @@
   --text-small--font-weight: 400;
 
   --text-langswitch: 0.6875rem;
-  --text-langswitch--line-height: 1;
+  --text-langswitch--line-height: 1.6rem;
   --text-langswitch--letter-spacing: 0.06em;
   --text-langswitch--font-weight: 300;
-
-  --transition-property-smooth: var(--animate-smooth);
 }
 
 @utility bg-stripes {
@@ -124,6 +125,16 @@
   background: var(--card);
 }
 
+@utility transition-smooth {
+  transition-property: all;
+  transition-timing-function: ease-in-out;
+  transition-duration: 0.3s;
+}
+@utility transition-very-smooth {
+  transition-property: all;
+  transition-timing-function: ease-in-out;
+  transition-duration: 1s;
+}
 body {
   background: var(--background);
   color: var(--content-body);
