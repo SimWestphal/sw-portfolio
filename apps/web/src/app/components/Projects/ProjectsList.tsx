@@ -1,6 +1,6 @@
 import { PROJECTS_QUERY_RESULT } from "../../../../sanity.types";
 import { ProjectCard } from "./ProjectCard";
-// type Project = PROJECTS_QUERY_RESULT[number]
+
 export function ProjectsList({
   projects,
 }: {

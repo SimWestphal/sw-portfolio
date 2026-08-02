@@ -1,10 +1,12 @@
-type generateChunkAnchorProps = {
-  chunkAnchor: string;
-};
+interface getCleanedChunkAnchorProps {
+  arrayOfStrings: (string | null | undefined)[];
+}
 
-export default function generateChunkAnchor({
-  chunkAnchor,
-}: generateChunkAnchorProps) {
+export default function getCleanedChunkAnchor({
+  arrayOfStrings,
+}: getCleanedChunkAnchorProps) {
+  const chunkAnchor = arrayOfStrings.filter(Boolean).join("-");
+
   if (!chunkAnchor || typeof chunkAnchor !== "string") return "";
 
   return (
