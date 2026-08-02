@@ -1,5 +1,6 @@
 import type { SVGProps } from "react";
 import { IconAbout } from "./IconAbout";
+import { IconClose } from "./IconClose";
 import { IconContact } from "./IconContact";
 import { IconNeArrow } from "./IconNeArrow";
 import { IconProjects } from "./IconProjects";
@@ -19,4 +20,5 @@ export const iconMap = {
   contact: IconContact,
   spinner: IconSpinner,
   nearrow: IconNeArrow,
+  close: IconClose,
 } as const;
