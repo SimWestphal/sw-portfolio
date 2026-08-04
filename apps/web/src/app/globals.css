@@ -1,40 +1,150 @@
 @import "tailwindcss";
 
-/* bright default */
+/* ============================================================
+   Design tokens — bright default
+   Konsistent mit Styleguide.dc.html / Portfolio.dc.html
+   ============================================================ */
 :root {
-  --background: #f2f1ee;
-  --card: #f6f5f2;
-  --tag: #efeeeb;
+  /* -- Flächen / Neutral ------------------------------------ */
+  --background: #f2f1ee; /* Seiten-Canvas */
+  --card: #f6f5f2; /* Modal, Cards, Panels */
+  --tag: #efeeeb; /* Skill-Tag-Fläche im Modal */
 
-  --content-primary: #1c1c1a;
-  --content-body: #32322d;
-  --content-secondary: #4c4c46;
-  --content-muted: #6d6d66;
-  --content-faint: #8c8c85;
-  --content-subtle: #14140f26;
-  --content-label: rgb(109, 109, 102);
+  /* -- Text ------------------------------------------------- */
+  --content-primary: #1c1c1a; /* Überschriften */
+  --content-body: #32322d; /* Fließtext */
+  --content-detail: #2a2a26; /* Modal-/Intro-Fließtext */
+  --content-secondary: #4c4c46; /* Absätze 2. Ebene */
+  --content-tag: #43433d; /* Tags, Meta-Text */
+  --content-nav-inactive: #57574f; /* Nav-Label inaktiv */
+  --content-muted: #6d6d66; /* Labels, Captions */
+  --content-faint: #8c8c85; /* Nummern, Hints */
+  --content-label: #6d6d66; /* Mono-Labels (UPPER) */
 
-  --accent: #ff7a00;
-  --accent-hover: #e56d00;
-  --accent-foreground: #ffffff;
-  --accent-tint: rgba(255, 122, 0, 0.1);
-  --accent-hairline: rgba(20, 20, 15, 0.12);
+  /* -- Akzent: dekorativ (helles Orange) -------------------- */
+  --accent: #ff7a00; /* Punkt, Marker, Hover-Highlight */
+  --accent-hover: #e56d00; /* Segment-/Deko-Hover */
+  --accent-tint: rgba(255, 122, 0, 0.1); /* Badge-/Segment-Fläche */
+  --accent-tint-border: rgba(255, 122, 0, 0.28); /* Badge-Rand */
 
-  --border: rgba(20, 20, 15, 0.12);
+  /* -- Akzent: accessible Rost (Text & Buttons, WCAG AA) ---- */
+  --accent-strong: #a84a08; /* Button-Fläche, Section-Nummern (4.9:1) */
+  --accent-strong-hover: #8a4208; /* Button-Hover */
+  --accent-tag: #a06a2c; /* Badge-Text, aktiver Segment-Text */
+  --accent-foreground: #ffffff; /* Text auf Rost-Button */
 
+  /* -- Marker ----------------------------------------------- */
+  --marker-inactive: #c4c3bd; /* Nav-Marker inaktiv */
+
+  /* -- Linien & Ränder -------------------------------------- */
+  --border: rgba(20, 20, 15, 0.12); /* Hairline / Trennlinien */
+  --border-strong: rgba(20, 20, 15, 0.14); /* Tags, Cards */
+  --border-icon: rgba(20, 20, 15, 0.15); /* Icon-Button */
+  --border-search: rgba(20, 20, 15, 0.16); /* Suchfeld-Unterstrich */
+  --border-divider: rgba(20, 20, 15, 0.18); /* Meta-Divider */
+  --border-input: rgba(20, 20, 15, 0.2); /* Formularfeld-Unterstrich */
+
+  /* -- Overlay ---------------------------------------------- */
+  --overlay: rgba(28, 28, 26, 0.42); /* Modal-Backdrop (+ blur 3px) */
+
+  /* -- Hintergrund-Muster ----------------------------------- */
   --pattern-content-from: rgba(20, 20, 15, 0.06);
-  --pattern-content-to: rgb(242, 241, 238);
+  --pattern-content-to: #f2f1ee;
   --pattern-sidebar-from: rgba(20, 20, 15, 0.05);
-  --pattern-sidebar-to: rgb(236, 235, 231);
+  --pattern-sidebar-to: #ecebe7;
+  --pattern-card-from: rgba(20, 20, 15, 0.05);
+  --pattern-card-to: #f6f5f2;
+
+  /* -- Radien ----------------------------------------------- */
+  --radius-sm: 2px; /* Buttons, Tags, Inputs */
+  --radius-md: 4px; /* Cards, Modal, Swatches */
+  --radius-full: 9999px;
+
+  /* -- Schatten --------------------------------------------- */
+  --shadow-modal: 0 24px 70px rgba(20, 20, 15, 0.28);
+
+  /* -- Layout ----------------------------------------------- */
+  --sidebar-width: 320px; /* Desktop-Seitenleiste */
+  --rail-width: 68px; /* Mobile Icon-Rail */
+  --content-max: 920px; /* Inhaltsbereich max-width */
+  --footer-height: 44px;
 }
 
 .dark {
-  /* TODO */
+  /* -- Flächen / Neutral ------------------------------------ */
+  --background: #171613;
+  --card: #201f1b;
+  --tag: #282621;
+
+  /* -- Text ------------------------------------------------- */
+  --content-primary: #f4f3ef;
+  --content-body: #d8d7d0;
+  --content-detail: #e4e3dc;
+  --content-secondary: #b6b5ad;
+  --content-tag: #c6c5bd;
+  --content-nav-inactive: #8f8e85;
+  --content-muted: #9a998f;
+  --content-faint: #6f6e66;
+  --content-label: #9a998f;
+
+  /* -- Akzent: dekorativ (helles Orange) -------------------- */
+  --accent: #ff7a00;
+  --accent-hover: #ff9127;
+  --accent-tint: rgba(255, 122, 0, 0.14);
+  --accent-tint-border: rgba(255, 122, 0, 0.36);
+
+  /* -- Akzent: Text & Buttons (auf Dunkel: helles Orange, AA) */
+  --accent-strong: #ff8a1f; /* Button-Fläche, Nummern */
+  --accent-strong-hover: #ffa040; /* Button-Hover */
+  --accent-tag: #ffab52; /* Badge-Text, aktiver Segment-Text */
+  --accent-foreground: #171613; /* dunkler Text auf orangem Button */
+
+  /* -- Marker ----------------------------------------------- */
+  --marker-inactive: #4a4943;
+
+  /* -- Linien & Ränder -------------------------------------- */
+  --border: rgba(255, 255, 255, 0.1);
+  --border-strong: rgba(255, 255, 255, 0.13);
+  --border-icon: rgba(255, 255, 255, 0.16);
+  --border-search: rgba(255, 255, 255, 0.18);
+  --border-divider: rgba(255, 255, 255, 0.2);
+  --border-input: rgba(255, 255, 255, 0.24);
+
+  /* -- Overlay ---------------------------------------------- */
+  --overlay: rgba(0, 0, 0, 0.58);
+
+  /* -- Hintergrund-Muster ----------------------------------- */
+  --pattern-content-from: rgba(255, 255, 255, 0.05);
+  --pattern-content-to: #171613;
+  --pattern-sidebar-from: rgba(255, 255, 255, 0.045);
+  --pattern-sidebar-to: #1c1b17;
+  --pattern-card-from: rgba(255, 255, 255, 0.05);
+  --pattern-card-to: #201f1b;
+
+  /* -- Schatten --------------------------------------------- */
+  --shadow-modal: 0 24px 70px rgba(0, 0, 0, 0.6);
 }
 
+/* ============================================================
+   Theme mapping
+   ============================================================ */
 @theme inline {
-  --font-sans: var(--font-sans, ui-sans-serif, system-ui, sans-serif);
-  --font-mono: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace);
+  --font-sans: var(
+    --font-sans,
+    "IBM Plex Sans",
+    "Helvetica Neue",
+    Helvetica,
+    Arial,
+    sans-serif
+  );
+  --font-mono: var(
+    --font-mono,
+    "JetBrains Mono",
+    ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    monospace
+  );
 
   --color-background: var(--background);
   --color-card: var(--card);
@@ -42,65 +152,103 @@
 
   --color-content-primary: var(--content-primary);
   --color-content-body: var(--content-body);
+  --color-content-detail: var(--content-detail);
   --color-content-secondary: var(--content-secondary);
+  --color-content-tag: var(--content-tag);
+  --color-content-nav-inactive: var(--content-nav-inactive);
   --color-content-muted: var(--content-muted);
   --color-content-faint: var(--content-faint);
-  --color-content-subtle: var(--content-subtle);
   --color-label: var(--content-label);
 
   --color-accent: var(--accent);
   --color-accent-hover: var(--accent-hover);
-  --color-accent-foreground: var(--accent-foreground);
   --color-accent-tint: var(--accent-tint);
-  --color-accent-hairline: var(--accent-hairline);
+  --color-accent-tint-border: var(--accent-tint-border);
+
+  --color-accent-strong: var(--accent-strong);
+  --color-accent-strong-hover: var(--accent-strong-hover);
+  --color-accent-tag: var(--accent-tag);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-marker-inactive: var(--marker-inactive);
 
   --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-border-icon: var(--border-icon);
+  --color-border-search: var(--border-search);
+  --color-border-divider: var(--border-divider);
+  --color-border-input: var(--border-input);
+
+  --color-overlay: var(--overlay);
+
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-full: var(--radius-full);
+
+  --shadow-modal: var(--shadow-modal);
 }
 
 @theme {
   --font-heading: "IBM Plex Sans", sans-serif;
 
-  --text-h1: 2.61rem;
-  --text-h1--line-height: 1.05;
+  /* H1 · Name / Styleguide-Titel — 44px */
+  --text-h1: 2.75rem;
+  --text-h1--line-height: 1.1;
   --text-h1--letter-spacing: -0.025em;
   --text-h1--font-weight: 600;
 
-  --text-h2: 1.93rem;
+  /* H2 · Section-Head — 42px */
+  --text-h2: 2.61rem;
   --text-h2--line-height: 1.1;
-  --text-h2--letter-spacing: -0.02em;
+  --text-h2--letter-spacing: -0.025em;
   --text-h2--font-weight: 600;
 
+  /* H2 · Modal-Titel — 31px */
+  --text-h2-modal: 1.93rem;
+  --text-h2-modal--line-height: 1.15;
+  --text-h2-modal--letter-spacing: -0.02em;
+  --text-h2-modal--font-weight: 600;
+
+  /* H3 · Projekttitel — 24px */
   --text-h3: 1.51rem;
-  --text-h3--line-height: 1;
+  --text-h3--line-height: 1.25;
   --text-h3--letter-spacing: -0.01em;
   --text-h3--font-weight: 500;
 
+  /* H4 · Werdegang-Rolle — 22px */
   --text-h4: 1.375rem;
-  --text-h4--line-height: 1;
-  --text-h4--letter-spacing: 0;
-  --text-h4--font-weight: 400;
+  --text-h4--line-height: 1.3;
+  --text-h4--letter-spacing: -0.01em;
+  --text-h4--font-weight: 500;
 
+  /* Body & Intro — 17.6px */
   --text-p: 1.1rem;
-  --text-p--line-height: 1.6rem;
+  --text-p--line-height: 1.65;
   --text-p--letter-spacing: 0;
   --text-p--font-weight: 400;
 
+  /* Meta / Label (mono) — 12px */
   --text-medium: 0.75rem;
-  --text-medium--line-height: 1;
+  --text-medium--line-height: 1.5;
   --text-medium--letter-spacing: 0.16em;
   --text-medium--font-weight: 400;
 
+  /* Kleinster Text (mono, Hints) — 11px */
   --text-small: 0.6875rem;
-  --text-small--line-height: 1;
+  --text-small--line-height: 1.4;
   --text-small--letter-spacing: 0.16em;
   --text-small--font-weight: 400;
 
-  --text-langswitch: 0.6875rem;
-  --text-langswitch--line-height: 1.6rem;
+  /* Sprachwahl-Segment (mono) — 13px */
+  --text-langswitch: 0.8125rem;
+  --text-langswitch--line-height: 1.6;
   --text-langswitch--letter-spacing: 0.06em;
-  --text-langswitch--font-weight: 300;
+  --text-langswitch--font-weight: 400;
 }
 
+/* ============================================================
+   Utilities
+   ============================================================ */
 @utility bg-stripes {
   background: repeating-linear-gradient(
       45deg,
@@ -113,16 +261,29 @@
 }
 
 @utility bg-dots {
+  background-color: var(--pattern-content-to);
   background-image: radial-gradient(
-      var(--pattern-content-from) 1px,
-      transparent 1px
-    )
-    var(--pattern-content-to);
-  backgorund-size: 20px 20px;
+    var(--pattern-content-from) 1px,
+    transparent 1px
+  );
+  background-size: 20px 20px;
+}
+
+@utility bg-dots-card {
+  background-color: var(--pattern-card-to);
+  background-image: radial-gradient(
+    var(--pattern-card-from) 1px,
+    transparent 1px
+  );
+  background-size: 18px 18px;
 }
 
 @utility bg-content {
   background: var(--card);
+}
+
+@utility shadow-modal {
+  box-shadow: var(--shadow-modal);
 }
 
 @utility transition-smooth {
@@ -135,7 +296,15 @@
   transition-timing-function: ease-in-out;
   transition-duration: 1s;
 }
+
 body {
   background: var(--background);
   color: var(--content-body);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--accent);
+  color: #fff;
 }

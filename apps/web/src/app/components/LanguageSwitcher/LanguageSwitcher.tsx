@@ -7,13 +7,13 @@ type Translation = { language: string; slug: string };
 
 const languageSwitcherStyles = tv({
   slots: {
-    wrapper: "flex flex-none gap-3",
-    link: "border-1 border-content-subtle cursor-pointer text-langswitch font-mono p-2",
+    wrapper: "flex flex-none gap-2",
+    link: "border-1 border-border-icon cursor-pointer text-langswitch font-mono px-3 py-[7px]",
   },
   variants: {
     isActive: {
-      true: { link: "border-accent text-content-muted bg-accent-tint" },
-      false: { link: "text-content-label" },
+      true: { link: "border-accent t bg-accent-tint" },
+      false: { link: "text-content-nav-inactive " },
     },
   },
 });
