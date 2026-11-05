@@ -33,8 +33,12 @@ const modalStyles = tv({
   },
   variants: {
     isOpen: {
-      true: "fixed z-50 shadow-2xl",
-      false: "hidden",
+      true: {
+        modalWrapper: "fixed z-50 shadow-2xl",
+      },
+      false: {
+        modalWrapper: "hidden",
+      },
     },
   },
 });
@@ -113,7 +117,12 @@ export function Modal({ id, descSr, project, number, children }: ModalProps) {
           {project.shortDescription}
           <Link href={id}>+</Link>
         </p>
-        <TagList list={project.skills} />
+        <TagList
+          list={project.skills}
+          showHeader={true}
+          headerId={`skills-${project.company}`}
+          header="Skills"
+        />
       </article>
       <Button onClick={closeModal}>Schliessen</Button>
     </dialog>

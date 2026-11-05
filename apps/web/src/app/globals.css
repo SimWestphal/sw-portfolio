@@ -10,16 +10,12 @@
   --card: #f6f5f2; /* Modal, Cards, Panels */
   --tag: #efeeeb; /* Skill-Tag-Fläche im Modal */
 
-  /* -- Text ------------------------------------------------- */
+  /* -- Text (5-Stufen-Rampe) -------------------------------- */
   --content-primary: #1c1c1a; /* Überschriften */
-  --content-body: #32322d; /* Fließtext */
-  --content-detail: #2a2a26; /* Modal-/Intro-Fließtext */
-  --content-secondary: #4c4c46; /* Absätze 2. Ebene */
-  --content-tag: #43433d; /* Tags, Meta-Text */
-  --content-nav-inactive: #57574f; /* Nav-Label inaktiv */
-  --content-muted: #6d6d66; /* Labels, Captions */
+  --content-body: #32322d; /* Fließtext, Intro, Modal */
+  --content-secondary: #4c4c46; /* Absätze 2. Ebene, Tags, Meta */
+  --content-muted: #6d6d66; /* Labels, Nav inaktiv, Captions */
   --content-faint: #8c8c85; /* Nummern, Hints */
-  --content-label: #6d6d66; /* Mono-Labels (UPPER) */
 
   /* -- Akzent: dekorativ (helles Orange) -------------------- */
   --accent: #ff7a00; /* Punkt, Marker, Hover-Highlight */
@@ -36,13 +32,14 @@
   /* -- Marker ----------------------------------------------- */
   --marker-inactive: #c4c3bd; /* Nav-Marker inaktiv */
 
-  /* -- Linien & Ränder -------------------------------------- */
-  --border: rgba(20, 20, 15, 0.12); /* Hairline / Trennlinien */
-  --border-strong: rgba(20, 20, 15, 0.14); /* Tags, Cards */
-  --border-icon: rgba(20, 20, 15, 0.15); /* Icon-Button */
-  --border-search: rgba(20, 20, 15, 0.16); /* Suchfeld-Unterstrich */
-  --border-divider: rgba(20, 20, 15, 0.18); /* Meta-Divider */
-  --border-input: rgba(20, 20, 15, 0.2); /* Formularfeld-Unterstrich */
+  /* -- Linien (aus Ink #14140f, transluzent) ---------------- */
+  --line: rgba(
+    20,
+    20,
+    15,
+    0.13
+  ); /* Trennlinien, Tags, Cards, Icon, Segment inaktiv, Suchfeld */
+  --line-strong: rgba(20, 20, 15, 0.2); /* Meta-Divider, Formularfeld */
 
   /* -- Overlay ---------------------------------------------- */
   --overlay: rgba(28, 28, 26, 0.42); /* Modal-Backdrop (+ blur 3px) */
@@ -79,13 +76,9 @@
   /* -- Text ------------------------------------------------- */
   --content-primary: #f4f3ef;
   --content-body: #d8d7d0;
-  --content-detail: #e4e3dc;
-  --content-secondary: #b6b5ad;
-  --content-tag: #c6c5bd;
-  --content-nav-inactive: #8f8e85;
-  --content-muted: #9a998f;
+  --content-secondary: #b6b5ad; /* Absätze 2. Ebene, Tags, Meta */
+  --content-muted: #9a998f; /* Labels, Nav inaktiv, Captions */
   --content-faint: #6f6e66;
-  --content-label: #9a998f;
 
   /* -- Akzent: dekorativ (helles Orange) -------------------- */
   --accent: #ff7a00;
@@ -102,13 +95,9 @@
   /* -- Marker ----------------------------------------------- */
   --marker-inactive: #4a4943;
 
-  /* -- Linien & Ränder -------------------------------------- */
-  --border: rgba(255, 255, 255, 0.1);
-  --border-strong: rgba(255, 255, 255, 0.13);
-  --border-icon: rgba(255, 255, 255, 0.16);
-  --border-search: rgba(255, 255, 255, 0.18);
-  --border-divider: rgba(255, 255, 255, 0.2);
-  --border-input: rgba(255, 255, 255, 0.24);
+  /* -- Linien ----------------------------------------------- */
+  --line: rgba(255, 255, 255, 0.13);
+  --line-strong: rgba(255, 255, 255, 0.22);
 
   /* -- Overlay ---------------------------------------------- */
   --overlay: rgba(0, 0, 0, 0.58);
@@ -152,13 +141,9 @@
 
   --color-content-primary: var(--content-primary);
   --color-content-body: var(--content-body);
-  --color-content-detail: var(--content-detail);
   --color-content-secondary: var(--content-secondary);
-  --color-content-tag: var(--content-tag);
-  --color-content-nav-inactive: var(--content-nav-inactive);
   --color-content-muted: var(--content-muted);
   --color-content-faint: var(--content-faint);
-  --color-label: var(--content-label);
 
   --color-accent: var(--accent);
   --color-accent-hover: var(--accent-hover);
@@ -172,12 +157,8 @@
 
   --color-marker-inactive: var(--marker-inactive);
 
-  --color-border: var(--border);
-  --color-border-strong: var(--border-strong);
-  --color-border-icon: var(--border-icon);
-  --color-border-search: var(--border-search);
-  --color-border-divider: var(--border-divider);
-  --color-border-input: var(--border-input);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
 
   --color-overlay: var(--overlay);
 

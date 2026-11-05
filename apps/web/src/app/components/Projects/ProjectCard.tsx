@@ -26,7 +26,8 @@ const projectCardStyles = tv({
     projectCategory: "text-medium font-mono",
     projectCompany: "",
     shortDescription: "text-p text-content-body",
-    readMore: "inline-block px-2 hover:text-accent text-xl",
+    readMoreLink: "group/readmore block",
+    readMore: "inline-block px-2 group-hover/readmore:text-accent text-xl",
   },
 });
 
@@ -47,6 +48,7 @@ export function ProjectCard({ project, number }: ProjectCardProps) {
     projectCategory,
     projectCompany,
     shortDescription,
+    readMoreLink,
     readMore,
   } = projectCardStyles({});
   const linki = `?projekt-${formattedChunkAnchor}=true`;
@@ -66,12 +68,17 @@ export function ProjectCard({ project, number }: ProjectCardProps) {
         {/* TODO anonymisiert feld + fe */}
       </div>
       <p className={shortDescription()}>
-        {project.shortDescription}
-        <Link href={linki} className={readMore()}>
-          +
+        <Link href={linki} className={readMoreLink()}>
+          {project.shortDescription}
+          <span className={readMore()}>+</span>
         </Link>
       </p>
-      <TagList list={project.skills} />
+      <TagList
+        list={project.skills}
+        showHeader={false}
+        headerId={`skills-${project.company}`}
+        header="Skills"
+      />
 
       <Modal
         number={getFormattedNumber(number)}
