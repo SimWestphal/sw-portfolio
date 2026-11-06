@@ -4,7 +4,7 @@ export const company = defineType({
   type: 'document',
   name: 'company',
   title: 'company',
-  fields: [defineField({type: 'internationalizedArrayString', name: 'name', title: 'name'})],
+  fields: [defineField({type: 'string', name: 'name', title: 'name'})],
   preview: {
     select: {title: 'name'},
     prepare({title}) {

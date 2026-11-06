@@ -2,7 +2,6 @@
 
 import { getProjectDuration } from "@/app/lib/helpers";
 import { tv } from "@/app/lib/tv";
-import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useRef } from "react";
 import { Button } from "../Button/Button";
@@ -19,7 +18,7 @@ interface ModalProps {
 const modalStyles = tv({
   slots: {
     modalWrapper:
-      "m-auto  w-full max-w-lg rounded-lg p-6 bg-dots shadow-2xl border-none outline-none backdrop:bg-black/50 backdrop:backdrop-blur-[2px] ",
+      "m-auto  w-full max-w-4xl rounded-lg p-6 bg-dots shadow-2xl border-none outline-none backdrop:bg-black/50 backdrop:backdrop-blur-[2px] ",
     modalInner: "p-4",
     subLine: "flex items-center gap-4",
     headingNumber: "font-mono text-content-faint text-medium",
@@ -30,6 +29,7 @@ const modalStyles = tv({
     projectCompany: "",
     shortDescription: "text-p text-content-body",
     readMore: "",
+    closeButton: "mt-2",
   },
   variants: {
     isOpen: {
@@ -43,7 +43,7 @@ const modalStyles = tv({
   },
 });
 
-export function Modal({ id, descSr, project, number, children }: ModalProps) {
+export function Modal({ id, project, number, children }: ModalProps) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -76,6 +76,7 @@ export function Modal({ id, descSr, project, number, children }: ModalProps) {
     additionalInfo,
     projectTime,
     projectCategory,
+    closeButton,
     projectCompany,
   } = modalStyles({ isOpen });
 
@@ -97,8 +98,6 @@ export function Modal({ id, descSr, project, number, children }: ModalProps) {
         <p id={`modal-desc-${id}`} className="sr-only">
           Ausführliche Beschreibung des Projekts.
         </p>
-        {/* <div className="mb-6 prose max-w-none">{children}</div> */}
-
         <div className={subLine()}>
           <span className={headingNumber()}>{number}</span>
           <h3 className={headingText()}>{project.company}</h3>
@@ -107,16 +106,13 @@ export function Modal({ id, descSr, project, number, children }: ModalProps) {
         <div className={additionalInfo()}>
           <span className={projectTime()}>
             {getProjectDuration(project.projectStart, project.projectEnd)}
-            &nbsp;|&nbsp;
           </span>
           <span className={projectCategory()}>{project.company}</span>
-          {/* <span className={projectCompany()}>{project.company}</span> */}
+          <span className={projectCompany()}>{project.company}</span>
           {/* TODO anonymisiert feld + fe */}
         </div>
-        <p className="">
-          {project.shortDescription}
-          <Link href={id}>+</Link>
-        </p>
+        <div className="mb-6 prose max-w-none">{children}</div>
+
         <TagList
           list={project.skills}
           showHeader={true}
@@ -124,7 +120,9 @@ export function Modal({ id, descSr, project, number, children }: ModalProps) {
           header="Skills"
         />
       </article>
-      <Button onClick={closeModal}>Schliessen</Button>
+      <Button className={closeButton()} onClick={closeModal}>
+        Schliessen
+      </Button>
     </dialog>
   );
 }

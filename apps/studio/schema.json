@@ -703,8 +703,7 @@
       "name": {
         "type": "objectAttribute",
         "value": {
-          "type": "inline",
-          "name": "internationalizedArrayString"
+          "type": "string"
         },
         "optional": true
       }

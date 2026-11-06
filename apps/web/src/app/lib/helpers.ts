@@ -1,5 +1,5 @@
 export function getFormattedNumber(number: number) {
-  if (!number) return "-";
+  if (!number) return "00";
   return String(number).padStart(2, "0");
 }
 

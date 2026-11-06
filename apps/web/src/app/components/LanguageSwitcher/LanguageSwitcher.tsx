@@ -12,7 +12,7 @@ const languageSwitcherStyles = tv({
   },
   variants: {
     isActive: {
-      true: { link: "border-accent t bg-accent-tint" },
+      true: { link: "border-accent bg-accent-tint" },
       false: { link: "text-content-nav-inactive " },
     },
   },

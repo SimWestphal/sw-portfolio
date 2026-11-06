@@ -21,10 +21,11 @@ const projectCardStyles = tv({
     heading: "flex items-center gap-4",
     headingNumber: "font-mono text-content-faint text-medium pt-1",
     headingText: "text-h3 transition-smooth group-hover:text-accent",
-    additionalInfo: "",
+    additionalInfo: "gap-2 flex flex-wrap items-center text-content-muted",
     projectTime: "text-medium font-mono text-content-muted",
     projectCategory: "text-medium font-mono",
-    projectCompany: "",
+    projectCompany:
+      "border-1  font-mono text-small uppercase px-2 py-[2px] pb-0 border-accent-tint-border bg-accent-tint text-accent-tag",
     shortDescription: "text-p text-content-body",
     readMoreLink: "group/readmore block",
     readMore: "inline-block px-2 group-hover/readmore:text-accent text-xl",
@@ -61,10 +62,10 @@ export function ProjectCard({ project, number }: ProjectCardProps) {
       <div className={additionalInfo()}>
         <span className={projectTime()}>
           {getProjectDuration(project.projectStart, project.projectEnd)}
-          &nbsp;|&nbsp;
         </span>
-        <span className={projectCategory()}>{project.company}</span>
-        {/* <span className={projectCompany()}>{project.company}</span> */}
+        <span>|</span>
+        <span className={projectCategory()}>{project.name}</span>
+        <span className={projectCompany()}>{project.company}</span>
         {/* TODO anonymisiert feld + fe */}
       </div>
       <p className={shortDescription()}>

@@ -139,7 +139,7 @@ export type Company = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  name?: InternationalizedArrayString;
+  name?: string;
 };
 
 export type ProjectCategory = {
@@ -610,7 +610,7 @@ export type TRANSLATIONS_QUERY_RESULT = {
 
 // Source: ../web/src/sanity/queries.ts
 // Variable: PROJECTS_QUERY
-// Query: *[_type in ["project"] ] {    _id,    "name":name[language == $language][0].value,    "shortDescription":shortDescription[language == $language][0].value,    "skills":skills[]-> {        _id,        "name":name[language == $language][0].value,    },    "projectCategory":projectCategory->name[language == $language][0].value,    "description":description[language == $language][0].value,    "company":company->name[language == $language][0].value,    "role":role->name[language == $language][0].value,    "projectStart": string::split(projectStart, "-")[1] + "/" + string::split(projectStart, "-")[0],  "projectEnd": string::split(projectEnd, "-")[1] + "/" + string::split(projectEnd, "-")[0]  }
+// Query: *[_type in ["project"] ] {    _id,    "name":name[language == $language][0].value,    "shortDescription":shortDescription[language == $language][0].value,    "skills":skills[]-> {        _id,        "name":name[language == $language][0].value,    },    "projectCategory":projectCategory->name[language == $language][0].value,    "description":description[language == $language][0].value,    "company":company->name,    "role":role->name[language == $language][0].value,    "projectStart": string::split(projectStart, "-")[1] + "/" + string::split(projectStart, "-")[0],    "projectEnd": string::split(projectEnd, "-")[1] + "/" + string::split(projectEnd, "-")[0]  }
 export type PROJECTS_QUERY_RESULT = Array<{
   _id: string;
   name: string | null;
@@ -652,6 +652,6 @@ declare module "@sanity/client" {
     '\n  *[_type in ["legalPage"] && defined(slug.current)]{\n    "slug": slug.current,\n    language\n  }\n': LEGAL_PAGE_PARAMS_QUERY_RESULT;
     '\n  *[_type == "navigation" && language == $language]{\n    _id,\n    name,\n    language,\n    navigationItem[]{\n      name,\n      icon,\n      linkType,\n      anchorLink,\n      internalLink->{ _id, title, "slug": slug.current }\n    },\n    "translations": *[\n      _type == "translation.metadata" && references(^._id)\n    ].translations[].value->{\n      language\n    }\n  }\n': NAVIGATION_QUERY_RESULT;
     '\n  *[_type in ["legalPage"] && slug.current == $slug && language == $language][0]{\n    language,\n    "slug": slug.current,\n    "translations": *[\n      _type == "translation.metadata" && references(^._id)\n    ].translations[].value->{ language, "slug": slug.current }\n  }\n': TRANSLATIONS_QUERY_RESULT;
-    '\n  *[_type in ["project"] ] {\n    _id,\n    "name":name[language == $language][0].value,\n    "shortDescription":shortDescription[language == $language][0].value,\n    "skills":skills[]-> {\n        _id,\n        "name":name[language == $language][0].value,\n    },\n    "projectCategory":projectCategory->name[language == $language][0].value,\n    "description":description[language == $language][0].value,\n    "company":company->name[language == $language][0].value,\n    "role":role->name[language == $language][0].value,\n    "projectStart": string::split(projectStart, "-")[1] + "/" + string::split(projectStart, "-")[0],\n  "projectEnd": string::split(projectEnd, "-")[1] + "/" + string::split(projectEnd, "-")[0]\n  }\n': PROJECTS_QUERY_RESULT;
+    '\n  *[_type in ["project"] ] {\n    _id,\n    "name":name[language == $language][0].value,\n    "shortDescription":shortDescription[language == $language][0].value,\n    "skills":skills[]-> {\n        _id,\n        "name":name[language == $language][0].value,\n    },\n    "projectCategory":projectCategory->name[language == $language][0].value,\n    "description":description[language == $language][0].value,\n    "company":company->name,\n    "role":role->name[language == $language][0].value,\n    "projectStart": string::split(projectStart, "-")[1] + "/" + string::split(projectStart, "-")[0],\n    "projectEnd": string::split(projectEnd, "-")[1] + "/" + string::split(projectEnd, "-")[0]\n  }\n': PROJECTS_QUERY_RESULT;
   }
 }
